@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo NutriForma | Claudia Trainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="main-container full-page">
+        <!-- LADO IZQUIERDO: Branding Fijo -->
+        <section class="visual-side">
+            <div class="animation-wrapper">
+                <div class="logo-piece piece-1"></div>
+                <div class="logo-piece piece-2"></div>
+                <div class="logo-piece piece-3"></div>
+            </div>
+        </section>
+
+        <!-- LADO DERECHO: Tienda -->
+        <section class="content-side">
+            <!-- Sticky Header con Buscador -->
+            <header class="shop-header">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="¿Qué suplemento buscas?">
+                </div>
+                <!-- Botón flotante para abrir el carrito -->
+                <div id="cart-icon" onclick="toggleCart()">
+                    🛒 <span id="cart-count">0</span>
+                </div>
+                <nav class="category-pills" id="categoryFilters">
+                    <button class="pill active" data-category="todos">Todos</button>
+                    <button class="pill" data-category="PROTEINAS">Proteínas</button>
+                    <button class="pill" data-category="CREATINA">Creatinas</button>
+                    <button class="pill" data-category="VITAMINAS">Vitaminas</button>
+                </nav>
+            </header>
+
+            <!-- Sección de Promos (Carrusel Horizontal) -->
+            <section class="promo-section">
+                <h2>Ofertas del Mes!</h2>
+                <div class="promo-carousel" id="promoCarousel">
+                    <!-- Se llena con JS -->
+                </div>
+            </section>
+
+            <!-- Grid de Productos -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Se llena con JS y Lazy Loading -->
+            </div>
+        </section>
+
+        <!-- Ventana lateral del carrito -->
+        <div id="cart-modal" class="cart-hidden">
+            <div class="cart-header">
+                <h3>Tu Carrito</h3>
+                <button onclick="toggleCart()">X</button>
+            </div>
+            <div id="cart-items">
+                <!-- Aquí se cargarán los productos seleccionados -->
+            </div>
+            <div class="cart-footer">
+                <p>Total: <strong>S/ <span id="cart-total">0.00</span></strong></p>
+                <button onclick="enviarWhatsApp()" class="btn-whatsapp">Finalizar Pedido por WhatsApp</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Datos integrados directamente para evitar errores de carga local (CORS)
+        const productos = [
+            {
+                "id": 1,
+                "categoria": "PROTEINAS",
+                "nombre": "Pure Iso Whey 2KG 64 serv",
+                "laboratorio": "YAVA LABS",
+                "precio": 320,
+                "promo": "SHAKER GRATIS",
+                "estado": null,
+                "imagen": "img/productos/prod_1.webp"
+            },
+            {
+                "id": 2,
+                "categoria": "PROTEINAS",
+                "nombre": "Pure Iso Whey 1KG 32 serv",
+                "laboratorio": "YAVA LABS",
+                "precio": 219,
+                "promo": null,
+                "estado": "RESTOCK",
+                "imagen": "img/productos/prod_2.webp"
+            },
+            {
+                "id": 3,
+                "categoria": "PROTEINAS",
+                "nombre": "Isolate MyProtein 2.5kg",
+                "laboratorio": "Myprotein",
+                "precio": 379,
+                "promo": null,
+                "estado": null,
+                "imagen": "img/productos/prod_3.webp"
+            },
+            {
+                "id": 4,
+                "categoria": "PROTEINAS",
+                "nombre": "Diesel Isolate 5lb",
+                "laboratorio": "PerfectSports",
+                "precio": 419,
+                "promo": null,
+                "estado": null,
+                "imagen": "img/productos/prod_4.webp"
+            },
+            {
+                "id": 5,
+                "categoria": "PROTEINAS",
+                "nombre": "N ISO 5LBS",
+                "laboratorio": "ANS",
+                "precio": 349,
+                "promo": "SHAKER GRATIS",
+                "estado": null,
+                "imagen": "img/productos/prod_5.webp"
+            },
+            {
+                "id": 15,
+                "categoria": "GANADORES DE MASA",
+                "nombre": "King Mass 15lb",
+                "laboratorio": "Ronnie Coleman",
+                "precio": 349,
+                "promo": "SHAKER GRATIS",
+                "estado": null,
+                "imagen": "img/productos/prod_15.jpg"
+            },
+            {
+                "id": 19,
+                "categoria": "AMINOACIDOS",
+                "nombre": "EAA 300g Green Apple 34 serv",
+                "laboratorio": "YAVA LABS",
+                "precio": 139,
+                "promo": null,
+                "estado": "NUEVO",
+                "imagen": "img/productos/prod_19.webp"
+            },
+            {
+                "id": 23,
+                "categoria": "VITAMINAS",
+                "nombre": "Omega 3 90 softgel",
+                "laboratorio": "YAVA LABS",
+                "precio": 129,
+                "promo": null,
+                "estado": "NUEVO",
+                "imagen": "img/productos/prod_23.webp"
+            },
+            {
+                "id": 26,
+                "categoria": "CREATINA",
+                "nombre": "Creatina 300gr YAVA LABS",
+                "laboratorio": "YAVA LABS",
+                "precio": 99,
+                "promo": null,
+                "estado": null,
+                "imagen": "img/productos/prod_26.webp"
+            }
+            // Nota: Puedes seguir pegando el resto de los 42 productos aquí si lo deseas
+        ];
+
+        // 2. VARIABLES DEL CARRITO
+        let carrito = [];
+
+        // 3. RENDERIZAR PRODUCTOS (Modificado para el carrito)
+        function renderizar(data) {
+            const grid = document.getElementById('productsGrid');
+            if (data.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 50px;">No se encontraron productos.</p>`;
+                return;
+            }
+
+            grid.innerHTML = data.map(p => {
+                // Preparamos el mensaje para el botón de "Comprar ahora" (un solo producto)
+                const msjCunmbiarAhora = encodeURIComponent(`¡Hola Claudia! 👋 Quiero comprar ahora: *${p.nombre}*`);
+                const linkDirecto = `https://wa.me/51999888777?text=${msjCunmbiarAhora}`;
+
+                return `
+            <div class="product-card">
+                ${p.estado ? `<span class="badge">${p.estado}</span>` : ''}
+                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/150?text=Suplemento'">
+                
+                <div class="info">
+                    <span class="brand">${p.laboratorio}</span>
+                    <h3>${p.nombre}</h3>
+                    
+                    <p class="price">S/ ${p.precio}</p>
+                    ${p.promo ? `<p class="promo-tag"> ${p.promo}</p>` : ''}
+                    
+                    <div class="card-buttons">
+                        <!-- Botón 1: Añade al carrito invisible -->
+                        <button onclick="agregarAlCarrito(${p.id})" class="btn-add">
+                            Añadir al carrito
+                        </button>
+                        
+                        <!-- Botón 2: Salta el carrito e ir directo a WA -->
+                        <a href="${linkDirecto}" target="_blank" class="btn-now">
+                            Comprar ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+            }).join('');
+        }
+
+        // 4. FUNCIONES DEL CARRITO
+        function agregarAlCarrito(id) {
+            const producto = productos.find(p => p.id === id);
+            if (producto) {
+                carrito.push(producto);
+                actualizarInterfazCarrito();
+                // Opcional: abrir el carrito automáticamente al añadir
+                document.getElementById('cart-modal').classList.add('active');
+            }
+        }
+
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarInterfazCarrito();
+        }
+
+        function actualizarInterfazCarrito() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+
+            // Actualizar contador flotante
+            cartCount.innerText = carrito.length;
+
+            // Renderizar lista del carrito
+            cartItems.innerHTML = carrito.map((p, index) => `
+            <div class="cart-item" style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
+                <div>
+                    <p style="font-size:0.9rem; margin:0;">${p.nombre}</p>
+                    <small>S/ ${p.precio}</small>
+                </div>
+                <button onclick="eliminarDelCarrito(${index})" style="background:none; border:none; color:red; cursor:pointer;">🗑️</button>
+            </div>
+        `).join('');
+
+            // Calcular Total
+            const total = carrito.reduce((sum, p) => sum + p.precio, 0);
+            cartTotal.innerText = total.toFixed(2);
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('active');
+        }
+
+        function enviarWhatsApp() {
+            if (carrito.length === 0) {
+                alert("El carrito está vacío");
+                return;
+            }
+
+            let mensaje = "¡Hola Claudia! Deseo realizar el siguiente pedido:\n\n";
+            carrito.forEach(p => {
+                mensaje += `• ${p.nombre} (S/ ${p.precio})\n`;
+            });
+
+            const total = carrito.reduce((sum, p) => sum + p.precio, 0);
+            mensaje += `\nTotal a pagar: S/ ${total.toFixed(2)}`;
+
+            // REEMPLAZA EL NÚMERO AQUÍ
+            const url = `https://wa.me/51924377003?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        function renderizarPromos(data) {
+            const carousel = document.getElementById('promoCarousel');
+            const ofertas = data.filter(p => p.promo);
+            carousel.innerHTML = ofertas.map(p => `
+            <div class="promo-item">
+                <p><strong>${p.promo}:</strong> ${p.nombre}</p>
+            </div>
+        `).join('');
+        }
+
+        // Buscador Real-Time
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtrados = productos.filter(p =>
+                p.nombre.toLowerCase().includes(term) ||
+                p.laboratorio.toLowerCase().includes(term)
+            );
+            renderizar(filtrados);
+        });
+
+        // Filtros por Categoría
+        document.getElementById('categoryFilters').addEventListener('click', (e) => {
+            if (e.target.classList.contains('pill')) {
+                document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                const cat = e.target.dataset.category;
+                const filtrados = cat === 'todos' ? productos : productos.filter(p => p.categoria === cat);
+                renderizar(filtrados);
+            }
+        });
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizar(productos);
+            renderizarPromos(productos);
+        });
+
+    </script>
+</body>
+
+</html>
