@@ -11,6 +11,8 @@
     --sombra: 0 10px 30px rgba(81, 54, 130, 0.12);
     --borde-suave: #e0e0e0;
     --amarillo-aviso: #FFD700;
+    --gris-texto: #bbbbbb;
+    --negro: #000000;
 }
 
 * {
@@ -30,12 +32,13 @@ body {
    Ajustes para que el catálogo de productos ocupe todo el ancho.
    ================================================================ */
 .main-container.full-page {
-    display: block !important; 
+    display: block !important;
     width: 100% !important;
 }
 
 .main-container.full-page .visual-side {
-    display: none !important; /* Elimina el bloque lateral morado */
+    display: none !important;
+    /* Elimina el bloque lateral morado */
 }
 
 .main-container.full-page .content-side {
@@ -51,7 +54,8 @@ body {
    Controla la disposición de las columnas principales.
    ================================================================ */
 .visual-side {
-    display: none; /* Oculto en móvil */
+    display: none;
+    /* Oculto en móvil */
 }
 
 .content-side {
@@ -63,32 +67,208 @@ body {
 }
 
 /* ================================================================
-   4. CABECERA Y BUSCADOR (Shop Header)
-   Barra superior fija que contiene la caja de búsqueda.
+   4. NUEVO HEADER ESTILO NUTRIFORMA
    ================================================================ */
 .shop-header {
+    width: 100%;
+    z-index: 200;
     position: sticky;
     top: 0;
-    background: var(--gris-fondo);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centramos el contenido interno */
+    padding: 25px 0;
+    background-color: var(--morado); /* CAMBIO: Ahora es morado de marca */
+    
+    /* TRUCO SENIOR: Esto hace que el fondo se extienda al infinito a los lados 
+       aunque el header esté dentro de un contenedor pequeño */
+    box-shadow: 0 0 0 100vmax var(--morado);
+    clip-path: inset(0 -100vmax 0 -100vmax);
+}
+
+/* Contenedor interno para que el logo y buscador no se peguen a los bordes no se si es necesario*/
+.header-top-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding: 15px 0;
-    z-index: 200;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 1200px; /* Alineado con el resto del catálogo */
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.brand-logo {
+    color: var(--blanco);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.search-box {
+    flex-grow: 1;
+    max-width: 600px;
 }
 
 .search-box input {
     width: 100%;
-    padding: 15px 25px;
-    border-radius: 30px;
-    border: 2px solid var(--borde-suave);
+    padding: 12px 20px;
+    border-radius: 4px;
+    /* Más cuadrado, estilo corporativo */
+    border: none;
     font-size: 1rem;
     outline: none;
+    background: #ffffff;
+    color: white;
     transition: 0.3s;
 }
 
-.search-box input:focus { 
-    border-color: var(--verde); 
-    box-shadow: var(--sombra); 
+.search-box input:focus {
+    background: white;
+    color: var(--texto-dark);
+}
+
+.cart-trigger {
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#cart-count {
+    background: var(--verde);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 50%;
+}
+
+/* ================================================================
+   5. NAVEGACIÓN DE CATEGORÍAS
+   ================================================================ */
+.category-nav {
+    background-color: #ffffff; /* Fondo blanco */
+    display: flex;
+    justify-content: center;
+    padding: 1px 0;
+    border-bottom: 1px solid #e0e0e0;
+    
+    /* Extensión horizontal infinita */
+    box-shadow: 0 0 0 100vmax #ffffff;
+    clip-path: inset(0 -100vmax 0 -100vmax);
+    
+    /* Asegura que los botones no se peguen a los bordes en pantallas pequeñas */
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.category-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    white-space: nowrap;
+    padding: 15px 0;
+    border: none;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--verde);
+}
+
+.nav-link.active {
+    color: var(--morado);
+    border-bottom-color: var(--morado);
+}
+
+/* ================================================================
+   X. CARRUSEL DE MARCAS (NUEVO)
+   ================================================================ */
+.brands-carousel-section {
+    background: var(--blanco);
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 25s linear infinite;
+}
+
+.marquee-content span {
+    display: inline-block;
+    margin: 0 40px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--gris-texto);
+    text-transform: uppercase;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ================================================================
+   Y. OFERTAS DEL MES (NUEVO DISEÑO)
+   ================================================================ */
+.promo-carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 0 30px;
+    scrollbar-width: none;
+}
+
+.promo-item {
+    background: var(--verde);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(24, 199, 154, 0.3);
+    transition: transform 0.2s, background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.promo-item:hover {
+    transform: translateY(-3px);
+    background: #15b088;
+}
+
+.promo-item strong {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* ================================================================
@@ -115,7 +295,10 @@ body {
     font-weight: 600;
 }
 
-.pill.active { background: var(--morado); color: white; }
+.pill.active {
+    background: var(--morado);
+    color: white;
+}
 
 /* ================================================================
    6. TARJETA DE PERFIL (Hero Card)
@@ -232,7 +415,8 @@ body {
 }
 
 .btn-add:hover {
-    background-color: #3d2963; /* Un morado un poco más oscuro */
+    background-color: #3d2963;
+    /* Un morado un poco más oscuro */
 }
 
 /* Botón Comprar Ahora (Verde) */
@@ -286,9 +470,20 @@ body {
 }
 
 /* Estados iniciales de las piezas */
-.piece-1 { transform: translate(-150px, -150px) rotate(0deg); opacity: 0.3; }
-.piece-2 { transform: translate(150px, -150px) rotate(120deg); opacity: 0.3; }
-.piece-3 { transform: translate(0px, 200px) rotate(240deg); opacity: 0.3; }
+.piece-1 {
+    transform: translate(-150px, -150px) rotate(0deg);
+    opacity: 0.3;
+}
+
+.piece-2 {
+    transform: translate(150px, -150px) rotate(120deg);
+    opacity: 0.3;
+}
+
+.piece-3 {
+    transform: translate(0px, 200px) rotate(240deg);
+    opacity: 0.3;
+}
 
 /* Lógica de animación vinculada al Timeline del scroll */
 @supports (view-timeline-name: --forming-logo) {
@@ -313,9 +508,17 @@ body {
     }
 }
 
-.piece-1 { --final-rot: 0deg; }
-.piece-2 { --final-rot: 120deg; }
-.piece-3 { --final-rot: 240deg; }
+.piece-1 {
+    --final-rot: 0deg;
+}
+
+.piece-2 {
+    --final-rot: 120deg;
+}
+
+.piece-3 {
+    --final-rot: 240deg;
+}
 
 /* ================================================================
    9. CATÁLOGO DE PRODUCTOS (Grid y Cards)
@@ -349,7 +552,8 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100%; /* Asegura que todas midan lo mismo en la misma fila */
+    height: 100%;
+    /* Asegura que todas midan lo mismo en la misma fila */
     background: white;
     border-radius: 15px;
     overflow: hidden;
@@ -361,61 +565,92 @@ body {
     padding: 5px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Esto hace que el contenedor de info crezca */
+    flex-grow: 1;
+    /* Esto hace que el contenedor de info crezca */
 }
 
 .product-card .price {
-    margin-top: auto; /* Empuja el precio hacia abajo, justo encima de los botones */
+    margin-top: auto;
+    /* Empuja el precio hacia abajo, justo encima de los botones */
     padding-top: 10px;
     font-size: 1.2rem;
     color: var(--morado);
-    font-weight: 400; /* Aplicando tu preferencia de no usar negrita */
+    font-weight: 400;
+    /* Aplicando tu preferencia de no usar negrita */
 }
 
 .badge {
     position: absolute;
-    top: 15px;           /* Ajusta según qué tan cerca del borde la quieras */
-    right: -35px;        /* La sacamos un poco para que al rotar quede perfecta */
-    background-color: var(--verde); /* Color verde que mencionaste */
+    top: 15px;
+    /* Ajusta según qué tan cerca del borde la quieras */
+    right: -35px;
+    /* La sacamos un poco para que al rotar quede perfecta */
+    background-color: var(--verde);
+    /* Color verde que mencionaste */
     color: white;
     text-align: center;
-    width: 130px;        /* Ancho de la cinta */
+    width: 130px;
+    /* Ancho de la cinta */
     padding: 5px 0;
     font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
-    transform: rotate(45deg); /* El toque diagonal */
+    transform: rotate(45deg);
+    /* El toque diagonal */
     z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    pointer-events: none; /* Para que no interfiera si alguien intenta hacer click debajo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    /* Para que no interfiera si alguien intenta hacer click debajo */
 }
 
 .card-buttons {
-    margin-top: auto; /* El truco mágico: empuja los botones al final */
+    margin-top: auto;
+    /* El truco mágico: empuja los botones al final */
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding-top: 15px;
 }
 
-.product-card img { 
-    width: 100%; 
-    height: 180px; 
-    object-fit: contain; 
-    background: #f9f9f9; }
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background: #f9f9f9;
+}
 
 .badge.restock {
     position: absolute;
-    top: 10px; right: 10px;
+    top: 10px;
+    right: 10px;
     background: var(--amarillo-aviso);
-    font-size: 0.7rem; font-weight: bold;
-    padding: 4px 8px; border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 5px;
 }
 
-.product-card .info { padding: 15px; }
-.brand { font-size: 0.75rem; color: #888; text-transform: uppercase; }
-.price { font-weight: bold; color: var(--morado); font-size: 1.2rem; }
-.promo-tag { color: var(--verde); font-size: 0.85rem; font-weight: 600; }
+.product-card .info {
+    padding: 15px;
+}
+
+.brand {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.price {
+    font-weight: bold;
+    color: var(--morado);
+    font-size: 1.2rem;
+}
+
+.promo-tag {
+    color: var(--verde);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
 
 .btn-buy {
     display: block;
@@ -430,60 +665,385 @@ body {
 }
 
 /* ================================================================
-   10. SISTEMA DE CARRITO (Icono y Modal)
-   Controla el botón flotante y la ventana lateral del carrito.
+   10. SISTEMA DE CARRITO (BARRA LATERAL ESTILO PROFESIONAL)
    ================================================================ */
-#cart-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--verde);
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 1000;
-}
 
-#cart-count {
-    position: absolute;
-    top: 0;
+/* Contenedor Principal de la Barra Lateral */
+#cart-sidebar {
+    position: fixed;
     right: 0;
-    background: var(--morado);
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 50%;
+    top: 0;
+    width: 380px; /* Ancho profesional */
+    height: 100vh;
+    background-color: var(--blanco);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    z-index: 3000;
+    display: flex;
+    flex-direction: column; /* Organiza Header, Items y Footer en vertical */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#cart-modal {
-    position: fixed;
-    right: 0; top: 0;
-    width: 300px;
-    height: 100%;
-    background: white;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    z-index: 2000;
-    padding: 20px;
+/* Clases para mostrar/ocultar */
+.cart-hidden {
     transform: translateX(100%);
-    transition: 0.3s;
 }
 
-#cart-modal.active {
+#cart-sidebar.active {
     transform: translateX(0);
 }
+
+/* Cabecera del Carrito */
+.cart-header {
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borde-suave);
+    background: #f9f9f9;
+}
+
+.cart-header h2 {
+    font-size: 1.1rem;
+    color: var(--morado);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s;
+}
+
+.close-cart:hover {
+    color: var(--morado);
+}
+
+/* Cuerpo del Carrito (Donde van los productos) */
+.cart-items-container {
+    flex-grow: 1; /* Ocupa todo el espacio disponible */
+    overflow-y: auto; /* Scroll solo en esta parte */
+    padding: 20px;
+}
+
+/* Estilo de cada producto dentro del carrito */
+.cart-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f2f2f2;
+    align-items: center;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-details h4 {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: var(--texto-dark);
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--morado);
+    font-size: 0.95rem;
+}
+
+/* Pie del Carrito (Fijo abajo) */
+.cart-footer {
+    padding: 25px;
+    border-top: 1px solid var(--borde-suave);
+    background: #ffffff;
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cart-total-row span {
+    font-size: 1rem;
+    color: #777;
+}
+
+.cart-total-row strong {
+    font-size: 1.3rem;
+    color: var(--morado);
+}
+
+/* Botón de Realizar Pedido (Verde Nutriforma) */
+.btn-checkout {
+    width: 100%;
+    background-color: var(--verde);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(24, 199, 154, 0.2);
+}
+
+.btn-checkout:hover {
+    background-color: #15b088;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(24, 199, 154, 0.3);
+}
+
+.btn-view-cart {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.btn-view-cart:hover {
+    text-decoration: underline;
+}
+
+/* --- ESTILOS DEL FOOTER CORREGIDOS --- */
+/* =========================================
+   FOOTER PRINCIPAL
+========================================= */
+.main-footer {
+    background-color: var(--morado);
+    color: var(--blanco);
+    padding: 70px 20px 20px;
+    /* Un poco más de aire arriba */
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    /* Tipografía más limpia */
+    margin-top: 50px;
+}
+
+.footer-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    display: grid;
+    /* Ajustamos las proporciones para que la primera columna tenga más espacio real */
+    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+    gap: 60px;
+    /* Separación amplia */
+    padding: 0 20px;
+}
+
+/* Títulos de columnas */
+.footer-col h4 {
+    color: var(--blanco);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* Da el toque elegante del ejemplo */
+}
+
+/* Listas */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+    /* Espaciado uniforme entre links */
+}
+
+.footer-col ul li a {
+    color: rgba(255, 255, 255, 0.75);
+    /* Blanco suavizado para legibilidad */
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--verde);
+}
+
+/* Formulario de Suscripción */
+.subscribe-form {
+    display: flex;
+    gap: 0;
+    /* Unimos el input y el botón como en diseños modernos */
+    margin-bottom: 15px;
+}
+
+.subscribe-form input {
+    background: var(--blanco);
+    border: none;
+    padding: 12px 15px;
+    color: var(--texto-dark);
+    flex: 1;
+    border-radius: 4px 0 0 4px;
+    /* Bordes redondeados solo a la izquierda */
+    outline: none;
+    font-family: inherit;
+}
+
+.subscribe-form input::placeholder {
+    color: #999;
+}
+
+.btn-subscribe {
+    background-color: var(--verde);
+    border: none;
+    color: var(--blanco);
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    /* Bordes redondeados solo a la derecha */
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: filter 0.3s ease;
+}
+
+.btn-subscribe:hover {
+    filter: brightness(1.1);
+    /* Brilla un poco al pasar el mouse */
+}
+
+/* Términos y condiciones (Checkbox) */
+.terms-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+    margin-top: 15px;
+}
+
+.terms-label input[type="checkbox"] {
+    margin-top: 2px;
+    /* Alinea el checkbox con la primera línea de texto */
+    cursor: pointer;
+}
+
+.terms-label a {
+    color: var(--verde);
+    text-decoration: none;
+}
+
+.terms-label a:hover {
+    text-decoration: underline;
+}
+
+/* Libro de Reclamaciones */
+.reclamaciones {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Borde claro semitransparente */
+    padding: 10px 15px;
+    width: fit-content;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.reclamaciones:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.reclamaciones img {
+    width: 30px;
+    filter: invert(1);
+}
+
+.reclamaciones span {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Columna de Contacto */
+.contact-item {
+    margin-bottom: 25px;
+}
+
+.contact-item h4 {
+    margin-bottom: 8px;
+    /* Menos espacio entre título "LLÁMANOS" y el número */
+}
+
+.contact-item p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Redes Sociales */
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    background: rgba(255, 255, 255, 0.1);
+    /* Fondo translúcido sutil */
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    /* Cuadrados como en el ejemplo negro */
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--verde);
+    transform: translateY(-2px);
+}
+
+/* Footer Copyright */
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Línea divisoria muy sutil */
+    color: rgba(255, 255, 255, 0.5);
+    /* Texto tenue para no distraer */
+    font-size: 0.8rem;
+}
+
 
 /* ================================================================
    11. DISEÑO PARA ESCRITORIO (Desktop)
    Ajustes de pantalla dividida (Split View) para PC.
    ================================================================ */
 @media (min-width: 1024px) {
-    
+
     /* El Split Screen SOLO se activa si NO tiene la clase .full-page */
     .main-container:not(.full-page) {
         display: flex;
@@ -517,8 +1077,16 @@ body {
         background: var(--verde);
         transform: rotate(-45deg);
     }
-    .shape-1 { top: -100px; left: -20%; }
-    .shape-2 { bottom: -100px; right: -20%; }
+
+    .shape-1 {
+        top: -100px;
+        left: -20%;
+    }
+
+    .shape-2 {
+        bottom: -100px;
+        right: -20%;
+    }
 
     .main-logo {
         width: 250px;

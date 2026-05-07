@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo NutriForma | Claudia Trainer</title>
+    <title>Productos y Suplementos | Claudia Trainer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <main class="main-container full-page">
-        <!-- LADO IZQUIERDO: Branding Fijo -->
         <section class="visual-side">
             <div class="animation-wrapper">
                 <div class="logo-piece piece-1"></div>
@@ -19,155 +18,146 @@
             </div>
         </section>
 
-        <!-- LADO DERECHO: Tienda -->
         <section class="content-side">
-            <!-- Sticky Header con Buscador -->
             <header class="shop-header">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="¿Qué suplemento buscas?">
+                <div class="header-top">
+                    <div class="header-top-inner">
+                        <h2 class="brand-logo">CLAUDIA.TRAINER</h2>
+
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="¿Qué suplemento buscas?">
+                        </div>
+
+                        <div class="cart-trigger" onclick="toggleCart()">
+                            🛒 <span id="cart-count">0</span>
+                        </div>
+                    </div>
                 </div>
-                <!-- Botón flotante para abrir el carrito -->
-                <div id="cart-icon" onclick="toggleCart()">
-                    🛒 <span id="cart-count">0</span>
-                </div>
-                <nav class="category-pills" id="categoryFilters">
-                    <button class="pill active" data-category="todos">Todos</button>
-                    <button class="pill" data-category="PROTEINAS">Proteínas</button>
-                    <button class="pill" data-category="CREATINA">Creatinas</button>
-                    <button class="pill" data-category="VITAMINAS">Vitaminas</button>
+
+                <nav class="category-nav" id="categoryFilters"
+                    style="max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: center; gap: 15px;">
+                    <button class="nav-link active" data-category="todos">TODOS</button>
+                    <button class="nav-link" data-category="PROTEINAS">PROTEÍNAS ISO</button>
+                    <button class="nav-link" data-category="WHEY PROTEIN">WHEY PROTEIN</button>
+                    <button class="nav-link" data-category="GANADORES DE MASA">GANADORES</button>
+                    <button class="nav-link" data-category="CREATINA">CREATINAS</button>
+                    <button class="nav-link" data-category="AMINOACIDOS">AMINOÁCIDOS</button>
+                    <button class="nav-link" data-category="PRE-WORKOUT">PRE-ENTRENO</button>
+                    <button class="nav-link" data-category="QUEMADORES DE GRASA">QUEMADORES</button>
+                    <button class="nav-link" data-category="VITAMINAS">VITAMINAS</button>
+                    <button class="nav-link" data-category="GLUTAMINA">GLUTAMINA</button>
                 </nav>
             </header>
 
-            <!-- Sección de Promos (Carrusel Horizontal) -->
-            <section class="promo-section">
-                <h2>Ofertas del Mes!</h2>
-                <div class="promo-carousel" id="promoCarousel">
-                    <!-- Se llena con JS -->
+            <section class="brands-carousel-section">
+                <div class="marquee">
+                    <div class="marquee-content">
+                        <span>YAVA LABS</span>
+                        <span>MYPROTEIN</span>
+                        <span>PERFECT SPORTS</span>
+                        <span>ANS</span>
+                        <span>ONE SCIENCE</span>
+                        <span>MUTANT</span>
+                        <span>DRAGON PHARMA</span>
+                        <span>RONNIE COLEMAN</span>
+                        <span>YAVA LABS</span>
+                        <span>MYPROTEIN</span>
+                        <span>PERFECT SPORTS</span>
+                        <span>ANS</span>
+                        <span>ONE SCIENCE</span>
+                        <span>MUTANT</span>
+                        <span>DRAGON PHARMA</span>
+                        <span>RONNIE COLEMAN</span>
+                    </div>
                 </div>
             </section>
 
-            <!-- Grid de Productos -->
+            <section class="promo-section">
+                <div class="promo-carousel" id="promoCarousel">
+                </div>
+            </section>
+
             <div class="products-grid" id="productsGrid">
-                <!-- Se llena con JS y Lazy Loading -->
             </div>
         </section>
 
-        <!-- Ventana lateral del carrito -->
-        <div id="cart-modal" class="cart-hidden">
+        <div id="cart-sidebar" class="cart-hidden">
             <div class="cart-header">
-                <h3>Tu Carrito</h3>
-                <button onclick="toggleCart()">X</button>
+                <h2>Tu Carrito</h2>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
             </div>
-            <div id="cart-items">
-                <!-- Aquí se cargarán los productos seleccionados -->
+
+            <div class="cart-items-container" id="cart-items">
             </div>
+
             <div class="cart-footer">
-                <p>Total: <strong>S/ <span id="cart-total">0.00</span></strong></p>
-                <button onclick="enviarWhatsApp()" class="btn-whatsapp">Finalizar Pedido por WhatsApp</button>
+                <div class="cart-total-row">
+                    <span>Total:</span>
+                    <strong>S/ <span id="cart-total">0.00</span></strong>
+                </div>
+
+                <button onclick="enviarWhatsApp()" class="btn-checkout">
+                    Finalizar Pedido por WhatsApp
+                </button>
+
+                <a href="#" class="btn-view-cart" onclick="toggleCart()">Continuar comprando</a>
             </div>
+        </div>
         </div>
     </main>
 
     <script>
-        // Datos integrados directamente para evitar errores de carga local (CORS)
+        // 1. DATA INTEGRADA (44 PRODUCTOS)
         const productos = [
-            {
-                "id": 1,
-                "categoria": "PROTEINAS",
-                "nombre": "Pure Iso Whey 2KG 64 serv",
-                "laboratorio": "YAVA LABS",
-                "precio": 320,
-                "promo": "SHAKER GRATIS",
-                "estado": null,
-                "imagen": "img/productos/prod_1.webp"
-            },
-            {
-                "id": 2,
-                "categoria": "PROTEINAS",
-                "nombre": "Pure Iso Whey 1KG 32 serv",
-                "laboratorio": "YAVA LABS",
-                "precio": 219,
-                "promo": null,
-                "estado": "RESTOCK",
-                "imagen": "img/productos/prod_2.webp"
-            },
-            {
-                "id": 3,
-                "categoria": "PROTEINAS",
-                "nombre": "Isolate MyProtein 2.5kg",
-                "laboratorio": "Myprotein",
-                "precio": 379,
-                "promo": null,
-                "estado": null,
-                "imagen": "img/productos/prod_3.webp"
-            },
-            {
-                "id": 4,
-                "categoria": "PROTEINAS",
-                "nombre": "Diesel Isolate 5lb",
-                "laboratorio": "PerfectSports",
-                "precio": 419,
-                "promo": null,
-                "estado": null,
-                "imagen": "img/productos/prod_4.webp"
-            },
-            {
-                "id": 5,
-                "categoria": "PROTEINAS",
-                "nombre": "N ISO 5LBS",
-                "laboratorio": "ANS",
-                "precio": 349,
-                "promo": "SHAKER GRATIS",
-                "estado": null,
-                "imagen": "img/productos/prod_5.webp"
-            },
-            {
-                "id": 15,
-                "categoria": "GANADORES DE MASA",
-                "nombre": "King Mass 15lb",
-                "laboratorio": "Ronnie Coleman",
-                "precio": 349,
-                "promo": "SHAKER GRATIS",
-                "estado": null,
-                "imagen": "img/productos/prod_15.jpg"
-            },
-            {
-                "id": 19,
-                "categoria": "AMINOACIDOS",
-                "nombre": "EAA 300g Green Apple 34 serv",
-                "laboratorio": "YAVA LABS",
-                "precio": 139,
-                "promo": null,
-                "estado": "NUEVO",
-                "imagen": "img/productos/prod_19.webp"
-            },
-            {
-                "id": 23,
-                "categoria": "VITAMINAS",
-                "nombre": "Omega 3 90 softgel",
-                "laboratorio": "YAVA LABS",
-                "precio": 129,
-                "promo": null,
-                "estado": "NUEVO",
-                "imagen": "img/productos/prod_23.webp"
-            },
-            {
-                "id": 26,
-                "categoria": "CREATINA",
-                "nombre": "Creatina 300gr YAVA LABS",
-                "laboratorio": "YAVA LABS",
-                "precio": 99,
-                "promo": null,
-                "estado": null,
-                "imagen": "img/productos/prod_26.webp"
-            }
-            // Nota: Puedes seguir pegando el resto de los 42 productos aquí si lo deseas
+            { "id": 1, "categoria": "PROTEINAS", "nombre": "Pure Iso Whey 2KG 64 serv chocolate", "laboratorio": "YAVA LABS", "precio": 320, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_1.webp" },
+            { "id": 2, "categoria": "PROTEINAS", "nombre": "Pure Iso Whey 1KG 32 serv chocolate", "laboratorio": "YAVA LABS", "precio": 219, "promo": null, "estado": "RESTOCK", "imagen": "img/productos/prod_2.webp" },
+            { "id": 3, "categoria": "PROTEINAS", "nombre": "Isolate MyProtein 2.5kg", "laboratorio": "Myprotein", "precio": 379, "promo": null, "estado": null, "imagen": "img/productos/prod_3.webp" },
+            { "id": 4, "categoria": "PROTEINAS", "nombre": "Diesel Isolate 5lb chocolate", "laboratorio": "PerfectSports", "precio": 419, "promo": null, "estado": null, "imagen": "img/productos/prod_4.webp" },
+            { "id": 5, "categoria": "PROTEINAS", "nombre": "N ISO 5LBS", "laboratorio": "ANS", "precio": 349, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_5.webp" },
+            { "id": 6, "categoria": "PROTEINAS", "nombre": "Iso Gold 5lbs", "laboratorio": "One Science", "precio": 399, "promo": null, "estado": null, "imagen": "img/productos/prod_6.webp" },
+            { "id": 7, "categoria": "WHEY PROTEIN", "nombre": "Elite Whey 2kg 66 serv chocolate", "laboratorio": "YAVA LABS", "precio": 309, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_7.webp" },
+            { "id": 8, "categoria": "WHEY PROTEIN", "nombre": "Elite Whey 1Kg 32 serv chocolate", "laboratorio": "YAVA LABS", "precio": 189, "promo": null, "estado": "RESTOCK", "imagen": "img/productos/prod_8.webp" },
+            { "id": 9, "categoria": "WHEY PROTEIN", "nombre": "Colageno Myprotein 1kg", "laboratorio": "Myprotein", "precio": 179, "promo": null, "estado": null, "imagen": "img/productos/prod_9.webp" },
+            { "id": 10, "categoria": "WHEY PROTEIN", "nombre": "Mutant Whey 10lb", "laboratorio": "Mutant", "precio": 499, "promo": null, "estado": null, "imagen": "img/productos/prod_10.webp" },
+            { "id": 11, "categoria": "WHEY PROTEIN", "nombre": "Vegan Protein 1kg", "laboratorio": "Myprotein", "precio": 149, "promo": null, "estado": null, "imagen": "img/productos/prod_11.webp" },
+            { "id": 12, "categoria": "WHEY PROTEIN", "nombre": "Vegan Protein 2.5kg", "laboratorio": "Myprotein", "precio": 279, "promo": null, "estado": null, "imagen": "img/productos/prod_12.webp" },
+            { "id": 13, "categoria": "WHEY PROTEIN", "nombre": "Gold Standard 5lbs", "laboratorio": "ON", "precio": 419, "promo": null, "estado": null, "imagen": "img/productos/prod_13.webp" },
+            { "id": 14, "categoria": "WHEY PROTEIN", "nombre": "Carnivor 4lbs", "laboratorio": "MuscleMeds", "precio": 329, "promo": null, "estado": null, "imagen": "img/productos/prod_14.webp" },
+            { "id": 15, "categoria": "GANADORES DE MASA", "nombre": "King Mass 15lb", "laboratorio": "Ronnie Coleman", "precio": 349, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_15.webp" },
+            { "id": 16, "categoria": "GANADORES DE MASA", "nombre": "Mutant mass 15lb", "laboratorio": "Mutant", "precio": 389, "promo": null, "estado": null, "imagen": "img/productos/prod_16.webp" },
+            { "id": 17, "categoria": "GANADORES DE MASA", "nombre": "Mutant mass 5lb", "laboratorio": "Mutant", "precio": 199, "promo": null, "estado": null, "imagen": "img/productos/prod_17.webp" },
+            { "id": 18, "categoria": "GANADORES DE MASA", "nombre": "Hulk Gainer 10lbs", "laboratorio": "Perfect Sports", "precio": 359, "promo": null, "estado": null, "imagen": "img/productos/prod_18.webp" },
+            { "id": 19, "categoria": "AMINOACIDOS", "nombre": "EAA 300g Green Apple 34 serv", "laboratorio": "YAVA LABS", "precio": 139, "promo": null, "estado": "NUEVO", "imagen": "img/productos/prod_19.webp" },
+            { "id": 20, "categoria": "AMINOACIDOS", "nombre": "Quench Bcaa 30sv", "laboratorio": "ANS", "precio": 149, "promo": null, "estado": null, "imagen": "img/productos/prod_20.webp" },
+            { "id": 21, "categoria": "AMINOACIDOS", "nombre": "Quench Bcaa 100sv", "laboratorio": "ANS", "precio": 259, "promo": null, "estado": null, "imagen": "img/productos/prod_21.webp" },
+            { "id": 22, "categoria": "AMINOACIDOS", "nombre": "Mutant Bcaa 30 serv", "laboratorio": "Mutant", "precio": 139, "promo": null, "estado": null, "imagen": "img/productos/prod_22.webp" },
+            { "id": 23, "categoria": "VITAMINAS", "nombre": "Omega 3 90 softgel", "laboratorio": "YAVA LABS", "precio": 129, "promo": null, "estado": "NUEVO", "imagen": "img/productos/prod_23.webp" },
+            { "id": 24, "categoria": "VITAMINAS", "nombre": "Joint Formula 90 caps", "laboratorio": "YAVA LABS", "precio": 129, "promo": null, "estado": null, "imagen": "img/productos/prod_24.webp" },
+            { "id": 25, "categoria": "VITAMINAS", "nombre": "Vita RC 120 tabs", "laboratorio": "Ronnie Coleman", "precio": 129, "promo": "NUEVO", "estado": null, "imagen": "img/productos/prod_25.webp" },
+            { "id": 26, "categoria": "CREATINA", "nombre": "Creatina 300gr YAVA LABS", "laboratorio": "YAVA LABS", "precio": 99, "promo": null, "estado": null, "imagen": "img/productos/prod_26.webp" },
+            { "id": 27, "categoria": "CREATINA", "nombre": "Creatina 300g Dragon Pharma", "laboratorio": "Dragon Pharma", "precio": 109, "promo": null, "estado": null, "imagen": "img/productos/prod_27.webp" },
+            { "id": 28, "categoria": "CREATINA", "nombre": "Creatina RC 300g", "laboratorio": "Ronnie Coleman", "precio": 99, "promo": null, "estado": null, "imagen": "img/productos/prod_28.webp" },
+            { "id": 29, "categoria": "CREATINA", "nombre": "Creatina RC 1kg", "laboratorio": "Ronnie Coleman", "precio": 249, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_29.webp" },
+            { "id": 30, "categoria": "CREATINA", "nombre": "Creakong 300gr", "laboratorio": "Mutant", "precio": 139, "promo": null, "estado": null, "imagen": "img/productos/prod_30.webp" },
+            { "id": 31, "categoria": "CREATINA", "nombre": "Creatina 250g", "laboratorio": "My protein", "precio": 99, "promo": null, "estado": null, "imagen": "img/productos/prod_31.webp" },
+            { "id": 32, "categoria": "PROTEINAS", "nombre": "Pure Iso Whey 2KG 64 serv vainilla", "laboratorio": "YAVA LABS", "precio": 320, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_32.webp" },
+            { "id": 33, "categoria": "GLUTAMINA", "nombre": "Glutamina Myprotein 250g", "laboratorio": "Myprotein", "precio": 99, "promo": null, "estado": null, "imagen": "img/productos/prod_33.webp" },
+            { "id": 34, "categoria": "GLUTAMINA", "nombre": "Glutamina Myprotein 1 kilo", "laboratorio": "Myprotein", "precio": 169, "promo": null, "estado": null, "imagen": "img/productos/prod_34.webp" },
+            { "id": 35, "categoria": "PRE-WORKOUT", "nombre": "VENOM INFERNO Brazo de 50", "laboratorio": "DragonPharma", "precio": 209, "promo": null, "estado": null, "imagen": "img/productos/prod_35.webp" },
+            { "id": 36, "categoria": "PROTEINAS", "nombre": "Pure Iso Whey 1KG 32 serv vainilla", "laboratorio": "YAVA LABS", "precio": 219, "promo": null, "estado": "RESTOCK", "imagen": "img/productos/prod_36.webp" },
+            { "id": 37, "categoria": "PRE-WORKOUT", "nombre": "VENOM 40 serv", "laboratorio": "DragonPharma", "precio": 189, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_37.webp" },
+            { "id": 38, "categoria": "PRE-WORKOUT", "nombre": "MR HYDE NIGHTMARE 30SRV", "laboratorio": "Prosupps", "precio": 189, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_38.webp" },
+            { "id": 39, "categoria": "PRE-WORKOUT", "nombre": "RITUAL PRE WORKOUT", "laboratorio": "ANS", "precio": 139, "promo": null, "estado": null, "imagen": "img/productos/prod_39.webp" },
+            { "id": 40, "categoria": "QUEMADORES DE GRASA", "nombre": "BLACK VIPER 90 CAPSULAS", "laboratorio": "DragonPharma", "precio": 169, "promo": null, "estado": null, "imagen": "img/productos/prod_40.webp" },
+            { "id": 41, "categoria": "QUEMADORES DE GRASA", "nombre": "LIPO 6 BLACK ULTRA 60 CAPS", "laboratorio": "NUTREX", "precio": 159, "promo": null, "estado": null, "imagen": "img/productos/prod_41.webp" },
+            { "id": 42, "categoria": "PROTEINAS", "nombre": "Diesel Isolate 5lb vainilla", "laboratorio": "PerfectSports", "precio": 419, "promo": null, "estado": null, "imagen": "img/productos/prod_42.webp" },
+            { "id": 43, "categoria": "WHEY PROTEIN", "nombre": "Elite Whey 2kg 66 serv vainilla", "laboratorio": "YAVA LABS", "precio": 309, "promo": "SHAKER GRATIS", "estado": null, "imagen": "img/productos/prod_43.webp" },
+            { "id": 44, "categoria": "WHEY PROTEIN", "nombre": "Elite Whey 1Kg 32 serv chocolate", "laboratorio": "YAVA LABS", "precio": 189, "promo": null, "estado": "RESTOCK", "imagen": "img/productos/prod_44.webp" }
         ];
 
-        // 2. VARIABLES DEL CARRITO
         let carrito = [];
 
-        // 3. RENDERIZAR PRODUCTOS (Modificado para el carrito)
+        // 2. RENDERIZAR PRODUCTOS
         function renderizar(data) {
             const grid = document.getElementById('productsGrid');
             if (data.length === 0) {
@@ -176,47 +166,37 @@
             }
 
             grid.innerHTML = data.map(p => {
-                // Preparamos el mensaje para el botón de "Comprar ahora" (un solo producto)
                 const msjCunmbiarAhora = encodeURIComponent(`¡Hola Claudia! 👋 Quiero comprar ahora: *${p.nombre}*`);
-                const linkDirecto = `https://wa.me/51999888777?text=${msjCunmbiarAhora}`;
+                const linkDirecto = `https://wa.me/51924377003?text=${msjCunmbiarAhora}`;
 
                 return `
-            <div class="product-card">
-                ${p.estado ? `<span class="badge">${p.estado}</span>` : ''}
-                <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/150?text=Suplemento'">
-                
-                <div class="info">
-                    <span class="brand">${p.laboratorio}</span>
-                    <h3>${p.nombre}</h3>
+                <div class="product-card">
+                    ${p.estado ? `<span class="badge">${p.estado}</span>` : ''}
+                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/150?text=Suplemento'">
                     
-                    <p class="price">S/ ${p.precio}</p>
-                    ${p.promo ? `<p class="promo-tag"> ${p.promo}</p>` : ''}
-                    
-                    <div class="card-buttons">
-                        <!-- Botón 1: Añade al carrito invisible -->
-                        <button onclick="agregarAlCarrito(${p.id})" class="btn-add">
-                            Añadir al carrito
-                        </button>
+                    <div class="info">
+                        <span class="brand">${p.laboratorio}</span>
+                        <h3>${p.nombre}</h3>
                         
-                        <!-- Botón 2: Salta el carrito e ir directo a WA -->
-                        <a href="${linkDirecto}" target="_blank" class="btn-now">
-                            Comprar ahora
-                        </a>
+                        <p class="price">S/ ${p.precio}</p>
+                        ${p.promo ? `<p class="promo-tag">${p.promo}</p>` : ''}
+                        
+                        <div class="card-buttons">
+                            <button onclick="agregarAlCarrito(${p.id})" class="btn-add">Añadir al carrito</button>
+                            <a href="${linkDirecto}" target="_blank" class="btn-now">Comprar ahora</a>
+                        </div>
                     </div>
-                </div>
-            </div>
-        `;
+                </div>`;
             }).join('');
         }
 
-        // 4. FUNCIONES DEL CARRITO
+        // 3. FUNCIONES DEL CARRITO
         function agregarAlCarrito(id) {
             const producto = productos.find(p => p.id === id);
             if (producto) {
                 carrito.push(producto);
                 actualizarInterfazCarrito();
-                // Opcional: abrir el carrito automáticamente al añadir
-                document.getElementById('cart-modal').classList.add('active');
+                document.getElementById('cart-sidebar').classList.add('active');
             }
         }
 
@@ -230,27 +210,24 @@
             const cartCount = document.getElementById('cart-count');
             const cartTotal = document.getElementById('cart-total');
 
-            // Actualizar contador flotante
             cartCount.innerText = carrito.length;
 
-            // Renderizar lista del carrito
             cartItems.innerHTML = carrito.map((p, index) => `
-            <div class="cart-item" style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
-                <div>
-                    <p style="font-size:0.9rem; margin:0;">${p.nombre}</p>
-                    <small>S/ ${p.precio}</small>
+                <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:8px;">
+                    <div>
+                        <p style="font-size:0.85rem; margin:0; line-height:1.2;">${p.nombre}</p>
+                        <small style="color:var(--morado);">S/ ${p.precio}</small>
+                    </div>
+                    <button onclick="eliminarDelCarrito(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:1.2rem;">🗑️</button>
                 </div>
-                <button onclick="eliminarDelCarrito(${index})" style="background:none; border:none; color:red; cursor:pointer;">🗑️</button>
-            </div>
-        `).join('');
+            `).join('');
 
-            // Calcular Total
             const total = carrito.reduce((sum, p) => sum + p.precio, 0);
             cartTotal.innerText = total.toFixed(2);
         }
 
         function toggleCart() {
-            document.getElementById('cart-modal').classList.toggle('active');
+            document.getElementById('cart-sidebar').classList.toggle('active');
         }
 
         function enviarWhatsApp() {
@@ -267,22 +244,11 @@
             const total = carrito.reduce((sum, p) => sum + p.precio, 0);
             mensaje += `\nTotal a pagar: S/ ${total.toFixed(2)}`;
 
-            // REEMPLAZA EL NÚMERO AQUÍ
             const url = `https://wa.me/51924377003?text=${encodeURIComponent(mensaje)}`;
             window.open(url, '_blank');
         }
 
-        function renderizarPromos(data) {
-            const carousel = document.getElementById('promoCarousel');
-            const ofertas = data.filter(p => p.promo);
-            carousel.innerHTML = ofertas.map(p => `
-            <div class="promo-item">
-                <p><strong>${p.promo}:</strong> ${p.nombre}</p>
-            </div>
-        `).join('');
-        }
-
-        // Buscador Real-Time
+        // EVENT LISTENERS
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const filtrados = productos.filter(p =>
@@ -292,10 +258,10 @@
             renderizar(filtrados);
         });
 
-        // Filtros por Categoría
+        // REEMPLAZA EL EVENT LISTENER DE LAS CATEGORÍAS
         document.getElementById('categoryFilters').addEventListener('click', (e) => {
-            if (e.target.classList.contains('pill')) {
-                document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+            if (e.target.classList.contains('nav-link')) {
+                document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
                 e.target.classList.add('active');
                 const cat = e.target.dataset.category;
                 const filtrados = cat === 'todos' ? productos : productos.filter(p => p.categoria === cat);
@@ -303,13 +269,71 @@
             }
         });
 
-        // Inicialización al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
             renderizar(productos);
             renderizarPromos(productos);
         });
-
     </script>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>SUSCRÍBETE Y MANTENTE AL DÍA</h4>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Tu Email" required>
+                    <button type="submit" class="btn-subscribe">Suscribirme</button>
+                </form>
+                <label class="terms-label">
+                    <input type="checkbox" required> Acepto los <a href="#">términos y condiciones</a> y la <a
+                        href="#">política de privacidad</a>.
+                </label>
+            </div>
+
+            <div class="footer-col">
+                <h4>LA EMPRESA</h4>
+                <ul>
+                    <li><a href="#">Productos y suplementos</a></li>
+                    <li><a href="#">Planes de entrenamiento</a></li>
+                    <li><a href="#">Tu evento conmigo</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>AYUDA AL CLIENTE</h4>
+                <ul>
+                    <li><a href="#">Política de envíos</a></li>
+                    <li><a href="#">Política de devoluciones</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                </ul>
+                <div class="reclamaciones">
+                    <img src="img/libro-reclamaciones.png" alt="Libro de Reclamaciones"
+                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3503/3503827.png'">
+                    <span>Libro de<br>Reclamaciones</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <div class="contact-item">
+                    <h4>LLÁMANOS</h4>
+                    <p>(+51) 924 377 003</p>
+                </div>
+                <div class="contact-item">
+                    <h4>ESCRÍBENOS</h4>
+                    <p>contacto@gmail.com</p>
+                </div>
+                <div class="social-icons">
+                    <a href="#" class="icon-fb">f</a>
+                    <a href="#" class="icon-ig">ig</a>
+                    <a href="#" class="icon-tk">tk</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Claudia Trainer les agradece su preferencia.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
   {
     "id": 1,
     "categoria": "PROTEINAS",
-    "nombre": "Pure Iso Whey 2KG 64 serv",
+    "nombre": "Pure Iso Whey 2KG 64 serv chocolate",
     "laboratorio": "YAVA LABS",
     "precio": 320,
     "promo": "SHAKER GRATIS",
@@ -12,7 +12,7 @@
   {
     "id": 2,
     "categoria": "PROTEINAS",
-    "nombre": "Pure Iso Whey 1KG 32 serv",
+    "nombre": "Pure Iso Whey 1KG 32 serv chocolate",
     "laboratorio": "YAVA LABS",
     "precio": 219,
     "promo": null,
@@ -32,7 +32,7 @@
   {
     "id": 4,
     "categoria": "PROTEINAS",
-    "nombre": "Diesel Isolate 5lb",
+    "nombre": "Diesel Isolate 5lb chocolate",
     "laboratorio": "PerfectSports",
     "precio": 419,
     "promo": null,
@@ -62,7 +62,7 @@
   {
     "id": 7,
     "categoria": "WHEY PROTEIN",
-    "nombre": "Elite Whey 2kg 66 serv",
+    "nombre": "Elite Whey 2kg 66 serv chocolate",
     "laboratorio": "YAVA LABS",
     "precio": 309,
     "promo": "SHAKER GRATIS",
@@ -72,7 +72,7 @@
   {
     "id": 8,
     "categoria": "WHEY PROTEIN",
-    "nombre": "Elite Whey 1Kg 32 serv",
+    "nombre": "Elite Whey 1Kg 32 serv chocolate",
     "laboratorio": "YAVA LABS",
     "precio": 189,
     "promo": null,
@@ -311,11 +311,11 @@
   },
   {
     "id": 32,
-    "categoria": "CREATINA",
-    "nombre": "Creatina 300g",
-    "laboratorio": "One Science",
-    "precio": 145,
-    "promo": null,
+    "categoria": "PROTEINAS",
+    "nombre": "Pure Iso Whey 2KG 64 serv vainilla",
+    "laboratorio": "YAVA LABS",
+    "precio": 320,
+    "promo": "SHAKER GRATIS",
     "estado": null,
     "imagen": "img/productos/prod_32.webp"
   },
@@ -351,12 +351,12 @@
   },
   {
     "id": 36,
-    "categoria": "PRE-WORKOUT",
-    "nombre": "VENOM INFERNO Dragon Bloods",
-    "laboratorio": "DragonPharma",
-    "precio": 209,
+    "categoria": "PROTEINAS",
+    "nombre": "Pure Iso Whey 1KG 32 serv vainilla",
+    "laboratorio": "YAVA LABS",
+    "precio": 219,
     "promo": null,
-    "estado": null,
+    "estado": "RESTOCK",
     "imagen": "img/productos/prod_36.webp"
   },
   {
@@ -372,7 +372,7 @@
   {
     "id": 38,
     "categoria": "PRE-WORKOUT",
-    "nombre": "MR HYDE NIGHTMARE 40SRV",
+    "nombre": "MR HYDE NIGHTMARE 30SRV",
     "laboratorio": "Prosupps",
     "precio": 189,
     "promo": "SHAKER GRATIS",
@@ -411,12 +411,32 @@
   },
   {
     "id": 42,
-    "categoria": "QUEMADORES DE GRASA",
-    "nombre": "CLA Myprotein 60 caps",
-    "laboratorio": "Myprotein",
-    "precio": 99,
+    "categoria": "PROTEINAS",
+    "nombre": "Diesel Isolate 5lb vainilla",
+    "laboratorio": "PerfectSports",
+    "precio": 419,
     "promo": null,
     "estado": null,
     "imagen": "img/productos/prod_42.webp"
+  },
+  {
+    "id": 43,
+    "categoria": "WHEY PROTEIN",
+    "nombre": "Elite Whey 2kg 66 serv vainilla",
+    "laboratorio": "YAVA LABS",
+    "precio": 309,
+    "promo": "SHAKER GRATIS",
+    "estado": null,
+    "imagen": "img/productos/prod_43.webp"
+  },
+  {
+    "id": 44,
+    "categoria": "WHEY PROTEIN",
+    "nombre": "Elite Whey 1Kg 32 serv chocolate",
+    "laboratorio": "YAVA LABS",
+    "precio": 189,
+    "promo": null,
+    "estado": "RESTOCK",
+    "imagen": "img/productos/prod_44.webp"
   }
 ]
