@@ -132,7 +132,7 @@
   {
     "id": 14,
     "categoria": "WHEY PROTEIN",
-    "nombre": "Carnivor 4.4lbs",
+    "nombre": "Carnivor 4lbs",
     "laboratorio": "MuscleMeds",
     "precio": 329,
     "promo": null,
@@ -368,6 +368,26 @@
     "promo": "SHAKER GRATIS",
     "estado": null,
     "imagen": "img/productos/prod_37.webp"
+  },
+  {
+    "id": 38,
+    "categoria": "PRE-WORKOUT",
+    "nombre": "MR HYDE NIGHTMARE 40SRV",
+    "laboratorio": "Prosupps",
+    "precio": 189,
+    "promo": "SHAKER GRATIS",
+    "estado": null,
+    "imagen": "img/productos/prod_38.webp"
+  },
+  {
+    "id": 39,
+    "categoria": "PRE-WORKOUT",
+    "nombre": "RITUAL PRE WORKOUT",
+    "laboratorio": "ANS",
+    "precio": 139,
+    "promo": null,
+    "estado": null,
+    "imagen": "img/productos/prod_39.webp"
   },
   {
     "id": 40,
