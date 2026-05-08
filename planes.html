@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes de Entrenamiento | Claudia Trainer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="shop-header">
+        <div class="header-top">
+            <div class="header-top-inner">
+                <a href="index.html" class="brand-logo">CLAUDIA.TRAINER</a>
+                <nav class="main-nav">
+                    <a href="index.html">Inicio</a>
+                    <a href="productos.html">Tienda</a>
+                    <a href="planes.html" class="active">Planes</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="planes-container">
+
+        <section class="planes-hero">
+            <h1>Transforma tu cuerpo, <br><span>domina tu mente.</span></h1>
+            <p>Programas diseñados para resultados reales. Elige el nivel que mejor se adapte a tus objetivos.</p>
+        </section>
+
+        <section class="video-explanation">
+            <h2 class="section-title">Conoce nuestros programas</h2>
+            <div class="video-carousel">
+                <div class="video-card">
+                    <div class="video-thumb" style="background-image: url('img/planes/thumb-1.jpg');">
+                        <button class="play-trigger" onclick="openVideoModal('ID_YOUTUBE_1')">▶</button>
+                    </div>
+                    <div class="video-card-body">
+                        <h3>Plan Definición</h3>
+                        <p>Elimina grasa rebelde manteniendo tu masa muscular.</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumb" style="background-image: url('img/planes/thumb-2.jpg');">
+                        <button class="play-trigger" onclick="openVideoModal('ID_YOUTUBE_2')">▶</button>
+                    </div>
+                    <div class="video-card-body">
+                        <h3>Plan Volumen</h3>
+                        <p>Construcción de fuerza y tamaño muscular progresivo.</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumb" style="background-image: url('img/planes/thumb-3.jpg');">
+                        <button class="play-trigger" onclick="openVideoModal('ID_YOUTUBE_3')">▶</button>
+                    </div>
+                    <div class="video-card-body">
+                        <h3>Glúteos & Core</h3>
+                        <p>Enfoque especializado en tren inferior y zona media.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-comparison">
+            <div class="comparison-grid">
+                <div class="price-card">
+                    <div class="card-header">
+                        <h3>PLAN BÁSICO</h3>
+                        <div class="price">S/ 120<span>/mes</span></div>
+                    </div>
+                    <ul class="features">
+                        <li>✅ Rutina mensual PDF</li>
+                        <li>✅ Guía nutricional básica</li>
+                        <li>❌ Chat 24/7</li>
+                        <li>❌ Ajustes semanales</li>
+                    </ul>
+                    <a href="https://wa.me/51924377003?text=Hola! Quiero el Plan Básico" class="btn-plan morado">Elegir
+                        Plan</a>
+                </div>
+
+                <div class="price-card featured">
+                    <div class="card-header">
+                        <span class="popular-tag">Más vendido</span>
+                        <h3>ASESORÍA VIP</h3>
+                        <div class="price">S/ 250<span>/mes</span></div>
+                    </div>
+                    <ul class="features">
+                        <li>✅ Rutina 100% personalizada</li>
+                        <li>✅ Plan de macronutrientes</li>
+                        <li>✅ WhatsApp directo Claudia</li>
+                        <li>✅ Videollamada mensual</li>
+                    </ul>
+                    <a href="https://wa.me/51924377003?text=Hola! Quiero el Plan VIP" class="btn-plan verde">Empezar
+                        VIP</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-grid">
+                <details>
+                    <summary>¿Necesito equipo de gimnasio?</summary>
+                    <p>Contamos con planes tanto para gimnasio como para casa con equipo mínimo.</p>
+                </details>
+                <details>
+                    <summary>¿Cómo recibo mi plan?</summary>
+                    <p>Tras el pago, recibirás un cuestionario inicial y en 48h tendrás tu plan en PDF y acceso a la
+                        App.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>SUSCRÍBETE Y MANTENTE AL DÍA</h4>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Tu Email" required>
+                    <button type="submit" class="btn-subscribe">Suscribirme</button>
+                </form>
+                <label class="terms-label">
+                    <input type="checkbox" required> Acepto los <a href="#">términos y condiciones</a> y la <a
+                        href="#">política de privacidad</a>.
+                </label>
+            </div>
+
+            <div class="footer-col">
+                <h4>LA EMPRESA</h4>
+                <ul>
+                    <li><a href="#">Productos y suplementos</a></li>
+                    <li><a href="#">Planes de entrenamiento</a></li>
+                    <li><a href="#">Tu evento conmigo</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>AYUDA AL CLIENTE</h4>
+                <ul>
+                    <li><a href="#">Política de envíos</a></li>
+                    <li><a href="#">Política de devoluciones</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                </ul>
+                <div class="reclamaciones">
+                    <img src="img/libro-reclamaciones.png" alt="Libro de Reclamaciones"
+                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3503/3503827.png'">
+                    <span>Libro de<br>Reclamaciones</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <div class="contact-item">
+                    <h4>LLÁMANOS</h4>
+                    <p>(+51) 924 377 003</p>
+                </div>
+                <div class="contact-item">
+                    <h4>ESCRÍBENOS</h4>
+                    <p>contacto@gmail.com</p>
+                </div>
+                <div class="social-icons">
+                    <a href="#" class="icon-fb">f</a>
+                    <a href="#" class="icon-ig">ig</a>
+                    <a href="#" class="icon-tk">tk</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Claudia Trainer les agradece su preferencia.</p>
+        </div>
+    </footer>
+
+    <div id="videoModal" class="modal-hidden">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeVideoModal()">&times;</button>
+            <div id="videoPlayer"></div>
+        </div>
+    </div>
+
+    <script>
+        function openVideoModal(id) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            // Aquí puedes insertar un iframe de YouTube dinámicamente
+            player.innerHTML = `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
+            modal.style.display = 'flex';
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('videoPlayer').innerHTML = '';
+        }
+    </script>
+</body>
+
+</html>

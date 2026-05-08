@@ -1,0 +1,288 @@
+/* ================================================================
+   5. NAVEGACIÓN DE CATEGORÍAS Y FILTROS
+   ================================================================ */
+.category-nav {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: 1px 0;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 0 0 100vmax #ffffff;
+    clip-path: inset(0 -100vmax 0 -100vmax);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.category-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    white-space: nowrap;
+    padding: 15px 0;
+    border: none;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--verde);
+}
+
+.nav-link.active {
+    color: var(--morado);
+    border-bottom-color: var(--morado);
+}
+
+.category-pills {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 0;
+    scrollbar-width: none;
+    margin: 0;
+}
+
+.pill {
+    white-space: nowrap;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--morado);
+    background: transparent;
+    color: var(--morado);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.pill.active {
+    background: var(--morado);
+    color: white;
+}
+
+/* ================================================================
+   X. CARRUSEL DE MARCAS
+   ================================================================ */
+.brands-carousel-section {
+    background: var(--blanco);
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 25s linear infinite;
+}
+
+.marquee-content span {
+    display: inline-block;
+    margin: 0 40px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--gris-texto);
+    text-transform: uppercase;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ================================================================
+   Y. OFERTAS DEL MES (NUEVO DISEÑO)
+   ================================================================ */
+.promo-carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 0 30px;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+}
+
+.promo-item {
+    background: var(--verde);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(24, 199, 154, 0.3);
+    transition: transform 0.2s, background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 280px;
+    scroll-snap-align: start;
+}
+
+.promo-item:hover {
+    transform: translateY(-3px);
+    background: #15b088;
+}
+
+.promo-item strong {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ================================================================
+   9. CATÁLOGO DE PRODUCTOS Y BOTONES
+   ================================================================ */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 13px;
+    width: 100%;
+}
+
+.product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    transition: 0.3s;
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background: #f9f9f9;
+}
+
+.product-card .info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.brand {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.product-card .price {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 1.2rem;
+    color: var(--morado);
+    font-weight: bold;
+}
+
+.promo-tag {
+    color: var(--verde);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background-color: var(--verde);
+    color: white;
+    text-align: center;
+    width: 130px;
+    padding: 5px 0;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotate(45deg);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.badge.restock {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--amarillo-aviso);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transform: none;
+    width: auto;
+}
+
+.card-buttons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 15px;
+}
+
+.btn-add {
+    background-color: var(--morado);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-add:hover {
+    background-color: #3d2963;
+}
+
+.btn-now {
+    background-color: var(--verde);
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-now:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-buy {
+    display: block;
+    text-align: center;
+    background: var(--morado);
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}

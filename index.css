@@ -1,0 +1,227 @@
+/* ================================================================
+   3. ESTRUCTURA DE LOS LADOS (Visual vs Contenido)
+   ================================================================ */
+.visual-side {
+    display: none;
+}
+
+.content-side {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ================================================================
+   6. TARJETA DE PERFIL (Hero Card)
+   ================================================================ */
+.hero-card {
+    background: var(--blanco);
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 20px;
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-img-slot {
+    width: 120px;
+    height: 120px;
+    background: var(--blanco);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 4px solid var(--morado);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--sombra);
+}
+
+.profile-logo {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+}
+
+.hero-card h1 {
+    color: var(--morado);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--verde);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* ================================================================
+   7. ELEMENTOS DE DISEÑO Y LINKTREE
+   ================================================================ */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.divider span {
+    width: 60px;
+    height: 2px;
+    background: var(--morado);
+    opacity: 0.5;
+}
+
+.divider .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--verde);
+    border-radius: 50%;
+}
+
+.link-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: var(--morado);
+    border: 2px solid #eee;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+    background: var(--verde);
+    color: white;
+    border-color: var(--verde);
+    transform: translateY(-2px);
+}
+
+.about-section {
+    margin-top: 50px;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+/* ================================================================
+   8. ANIMACIÓN DEL LOGO (Formación por Scroll)
+   ================================================================ */
+.animation-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-piece {
+    position: absolute;
+    width: 60px;
+    height: 100px;
+    background-color: var(--verde);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transition: all 0.1s linear;
+}
+
+.piece-1 {
+    transform: translate(-150px, -150px) rotate(0deg);
+    opacity: 0.3;
+}
+
+.piece-2 {
+    transform: translate(150px, -150px) rotate(120deg);
+    opacity: 0.3;
+}
+
+.piece-3 {
+    transform: translate(0px, 200px) rotate(240deg);
+    opacity: 0.3;
+}
+
+@supports (view-timeline-name: --forming-logo) {
+    .content-side {
+        view-timeline-name: --forming-logo;
+        view-timeline-axis: block;
+    }
+
+    .logo-piece {
+        animation-name: assemble;
+        animation-fill-mode: both;
+        animation-timeline: --forming-logo;
+        animation-range: entry 10% exit 90%;
+    }
+}
+
+@keyframes assemble {
+    to {
+        transform: translate(0, 0) rotate(var(--final-rot));
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(24, 199, 154, 0.4);
+    }
+}
+
+.piece-1 { --final-rot: 0deg; }
+.piece-2 { --final-rot: 120deg; }
+.piece-3 { --final-rot: 240deg; }
+
+/* ================================================================
+   11. DISEÑO PARA ESCRITORIO (Split View)
+   ================================================================ */
+@media (min-width: 1024px) {
+    .main-container:not(.full-page) {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .main-container:not(.full-page) .visual-side {
+        display: flex;
+        width: 45%;
+        background-color: var(--morado);
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .main-container:not(.full-page) .content-side {
+        width: 55%;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 60px;
+    }
+
+    .bg-shape {
+        position: absolute;
+        width: 150%;
+        height: 200px;
+        background: var(--verde);
+        transform: rotate(-45deg);
+    }
+
+    .shape-1 { top: -100px; left: -20%; }
+    .shape-2 { bottom: -100px; right: -20%; }
+
+    .main-logo {
+        width: 250px;
+        z-index: 10;
+    }
+
+    .hero-card {
+        margin-top: 0;
+        max-width: 450px;
+    }
+}
