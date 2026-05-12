@@ -167,24 +167,21 @@
             }
 
             grid.innerHTML = data.map(p => {
-                const msjCunmbiarAhora = encodeURIComponent(`¡Hola Claudia! 👋 Quiero comprar ahora: *${p.nombre}*`);
-                const linkDirecto = `https://wa.me/51924377003?text=${msjCunmbiarAhora}`;
-
                 return `
                 <div class="product-card">
-                    ${p.estado ? `<span class="badge">${p.estado}</span>` : ''}
-                    <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/150?text=Suplemento'">
-                    
-                    <div class="info">
+                  ${p.estado ? `<span class="badge">${p.estado}</span>` : ''}
+                  <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/150?text=Suplemento'">
+        
+                   <div class="info">
                         <span class="brand">${p.laboratorio}</span>
                         <h3>${p.nombre}</h3>
-                        
+            
                         <p class="price">S/ ${p.precio}</p>
                         ${p.promo ? `<p class="promo-tag">${p.promo}</p>` : ''}
-                        
+            
                         <div class="card-buttons">
                             <button onclick="agregarAlCarrito(${p.id})" class="btn-add">Añadir al carrito</button>
-                            <a href="${linkDirecto}" target="_blank" class="btn-now">Comprar ahora</a>
+                            <button onclick="comprarDirecto(${p.id})" class="btn-now">Comprar ahora</button>
                         </div>
                     </div>
                 </div>`;
@@ -274,6 +271,26 @@
             renderizar(productos);
             renderizarPromos(productos);
         });
+        
+        function comprarDirecto(id) {
+            const producto = productos.find(p => p.id === id);
+            if (!producto) return;
+
+            // Guardamos el producto en una "orden pendiente" por si necesitamos 
+            // recuperar la información en la página de éxito
+            const ordenIndividual = {
+                items: [producto],
+                total: producto.precio,
+                fechaCreacion: new Date().toISOString()
+            };
+
+            localStorage.setItem('pending_order', JSON.stringify(ordenIndividual));
+
+            // Redirección al link de prueba de Mercado Pago
+            // Como es "Monto Abierto", el usuario deberá digitar el precio en la pasarela
+            alert(`Redirigiendo a Mercado Pago. Recuerda ingresar el monto de: S/ ${producto.precio}`);
+            window.location.href = "https://mpago.la/1Lm4NLv";
+        }
     </script>
 
     <footer class="main-footer">

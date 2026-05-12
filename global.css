@@ -461,3 +461,30 @@ body {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.8rem;
 }
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr !important; /* Una sola columna */
+        gap: 40px;
+        text-align: center;
+    }
+
+    .subscribe-form {
+        flex-direction: column; /* Input arriba, botón abajo */
+        gap: 10px;
+    }
+
+    .subscribe-form input, 
+    .btn-subscribe {
+        border-radius: 4px !important; /* Quitamos los bordes pegados */
+        width: 100%;
+    }
+
+    .reclamaciones {
+        margin: 25px auto; /* Centramos el libro de reclamaciones */
+    }
+
+    .social-icons {
+        justify-content: center; /* Centramos redes sociales */
+    }
+}

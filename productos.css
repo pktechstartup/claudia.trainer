@@ -268,6 +268,8 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .btn-now:hover {
@@ -285,4 +287,32 @@
     margin-top: 10px;
     border-radius: 8px;
     font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .header-top-inner {
+        flex-wrap: wrap; /* Permite que los elementos bajen si no caben */
+        justify-content: space-between;
+        gap: 15px;
+        padding: 0 15px;
+    }
+
+    .brand-logo {
+        font-size: 1.2rem; /* Logo un poco más pequeño en móvil */
+        order: 1;
+    }
+
+    .cart-trigger {
+        order: 2;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%; /* El buscador ocupa todo el ancho abajo */
+        max-width: none;
+    }
+    
+    .search-box input {
+        padding: 10px;
+    }
 }
