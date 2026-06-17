@@ -1,7 +1,22 @@
 :root {
-    --pink-soft: #f2f0f7; /* Gris morado suave */
-    --rose: #513682;      /* Morado Claudia */
+    --pink-soft: #f2f0f7;
+    /* Gris morado suave */
+    --rose: #513682;
+    /* Morado Claudia */
     --verde-claudia: #18C79A;
+}
+
+/* Contenedor de planes */
+.planes-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Sección de reels */
+.reels-section {
+    width: 100%;
 }
 
 /* Títulos con el estilo Cormorant del código nuevo */
@@ -11,83 +26,319 @@
     text-align: center;
     margin: 40px 0;
 }
-.section-title span { color: var(--verde-claudia); font-style: italic; }
 
-.carousel-wrapper { position: relative; width: 100%; overflow: hidden; padding: 20px 0; }
-.carousel-track-outer { width: 100%; overflow: hidden; }
-.carousel-track { display: flex; gap: 20px; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.section-title span {
+    color: var(--verde-claudia);
+    font-style: italic;
+}
 
+/* CARRUSEL CENTRAL */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 30px 0;
+}
+
+/* Contenedor externo del carrusel */
+.carousel-track-outer {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    perspective: 1200px;
+}
+
+/* Track del carrusel con animación 3D */
+.carousel-track {
+    position: absolute;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Diapositivas individuales */
 .slide {
     flex: 0 0 auto;
-    width: 260px;
-    transition: all 0.6s ease;
-    filter: brightness(0.5) blur(2px);
-    transform: scale(0.9);
+    position: relative;
+    width: 220px;
+    height: 350px;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.4) blur(3px);
+    transform: scale(0.7) translateZ(-100px);
+    z-index: 1;
 }
 
 .slide.active {
     width: 320px;
+    height: 500px;
     filter: brightness(1) blur(0);
-    transform: scale(1.1);
+    transform: scale(1) translateZ(0);
     z-index: 10;
 }
 
+/* Video wrapper */
 .video-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 160%; /* Relación 9:16 */
+    height: 100%;
     background: #000;
     border-radius: 25px;
     overflow: hidden;
+    box-shadow: 0 20px 50px rgba(81, 54, 130, 0.3);
 }
 
 .video-wrapper video {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-/* Ficha inferior */
+/* Botón de mute */
+.mute-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: 0.3s;
+}
+
+.mute-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.mute-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Flechas de navegación */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(81, 54, 130, 0.8);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    transition: all 0.3s;
+}
+
+.arrow:hover {
+    background: var(--verde-claudia);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.arrow svg {
+    width: 24px;
+    height: 24px;
+}
+
+.arrow-prev {
+    left: -70px;
+}
+
+.arrow-next {
+    right: -70px;
+}
+
+/* Puntos de navegación */
+.dots {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--verde-claudia);
+    width: 30px;
+    border-radius: 6px;
+}
+
+/* Ficha de producto */
+.product-card-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 .product-card {
     background: white;
-    border-radius: 20px;
-    padding: 15px 25px;
+    border-radius: 15px;
+    padding: 20px 25px;
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    max-width: 450px;
-    margin: 30px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product-thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--rose);
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+}
+
+.price-original {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.price-current {
+    font-weight: 700;
+    color: var(--verde-claudia);
+    font-size: 1.1rem;
+}
+
+.badge-savings {
+    background: #FFE5E5;
+    color: #c00;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .btn-cart {
     background: var(--verde-claudia);
     border: none;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     color: white;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
-.btn-cart:hover { transform: scale(1.1); background: var(--rose); }
 
-/* Flechas y Dots igual que en tu código original... */
+.btn-cart:hover {
+    transform: scale(1.1);
+    background: var(--rose);
+}
+
+.btn-cart svg {
+    width: 24px;
+    height: 24px;
+}
 
 /* RESPONSIVE MÓVIL */
 @media (max-width: 768px) {
-    .reels-carousel {
-        padding: 40px 15vw !important; /* Ajuste para que se vean un poco los laterales */
-        gap: 20px;
-    }
-    
-    .reel-card {
-        min-width: 260px;
-        height: 450px;
+    .carousel-wrapper {
+        gap: 30px;
+        padding: 20px 0;
     }
 
-    .active-reel-info {
-        width: 90%;
-        margin-top: 20px;
+    .carousel-track-outer {
+        height: 350px;
+        max-width: 100%;
+    }
+
+    .slide {
+        width: 180px;
+        height: 280px;
+    }
+
+    .slide.active {
+        width: 240px;
+        height: 380px;
+    }
+
+    .arrow-prev {
+        left: 5px;
+    }
+
+    .arrow-next {
+        right: 5px;
+    }
+
+    .arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .product-info {
+        width: 100%;
+    }
+
+    .price-row {
+        justify-content: center;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
     }
 }
+

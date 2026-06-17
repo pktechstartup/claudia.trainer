@@ -2,16 +2,31 @@
    1. VARIABLES DE MARCA Y CONFIGURACIÓN BASE
    ================================================================ */
 :root {
+    /* Paleta Principal */
     --morado: #513682;
+    --rose: #513682;
+    /* Se mantiene para compatibilidad con tus clases */
     --verde: #18C79A;
+    --verde-claudia: #18C79A;
+    /* Se mantiene para compatibilidad */
+
+    /* Colores Neutros y Fondos */
     --blanco: #ffffff;
-    --gris-fondo: #F2F0F7;
+    --gris-fondo: #ffffff;
+    --negro: #000000;
+    --bg-header: rgba(107, 72, 173, 0.479);
+
+    /* Textos */
     --texto-dark: #2d2d2d;
+    --text-dark: #2f2445;
+    --gris-texto: #bbbbbb;
+    --text-muted: #6f6780;
+
+    /* Utilidades */
+    --amarillo-aviso: #FFD700;
     --sombra: 0 10px 30px rgba(81, 54, 130, 0.12);
     --borde-suave: #e0e0e0;
-    --amarillo-aviso: #FFD700;
-    --gris-texto: #bbbbbb;
-    --negro: #000000;
+    --border-soft: rgba(81, 54, 130, 0.12);
 }
 
 * {
@@ -47,11 +62,12 @@ body {
 }
 
 /* ================================================================
-   4. NUEVO HEADER ESTILO NUTRIFORMA
+   3. HEADER ESTILO NUTRIFORMA (TIENDA)
    ================================================================ */
 .shop-header {
     width: 100%;
-    z-index: 200;
+    z-index: 1000;
+    /* Corregido: subido de 200 a 1000 para evitar solapamientos */
     position: sticky;
     top: 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -63,6 +79,7 @@ body {
     justify-content: center;
     padding: 25px 0;
     background-color: var(--morado);
+    /* Nota: Revisa estas dos líneas si tu header se sigue cortando */
     box-shadow: 0 0 0 100vmax var(--morado);
     clip-path: inset(0 -100vmax 0 -100vmax);
 }
@@ -98,6 +115,7 @@ body {
     outline: none;
     background: #ffffff;
     color: white;
+    /* Considera cambiar esto si el fondo es blanco */
     transition: 0.3s;
 }
 
@@ -125,7 +143,117 @@ body {
 }
 
 /* ================================================================
-   10. SISTEMA DE CARRITO (BARRA LATERAL)
+   4. SITE HEADER (VERSIÓN TRANSPARENTE/BLUR)
+   ================================================================ */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-header);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    min-width: 0;
+}
+
+.brand-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    border-radius: 14px;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    min-width: 0;
+}
+
+.brand-name {
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--rose);
+    font-size: 1rem;
+}
+
+.brand-tagline {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-link:hover {
+    background: rgba(81, 54, 130, 0.08);
+    color: var(--rose);
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+    background: var(--rose);
+    color: #fff;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-link {
+    text-decoration: none;
+    background: var(--verde-claudia);
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(24, 199, 154, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.back-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(24, 199, 154, 0.28);
+}
+
+/* ================================================================
+   5. SISTEMA DE CARRITO (BARRA LATERAL)
    ================================================================ */
 #cart-sidebar {
     position: fixed;
@@ -276,7 +404,7 @@ body {
 }
 
 /* ================================================================
-   FOOTER PRINCIPAL
+   6. FOOTER PRINCIPAL
    ================================================================ */
 .main-footer {
     background-color: var(--morado);
@@ -362,6 +490,7 @@ body {
     filter: brightness(1.1);
 }
 
+/* Resto de estilos del footer... */
 .terms-label {
     display: flex;
     align-items: flex-start;
@@ -462,29 +591,70 @@ body {
     font-size: 0.8rem;
 }
 
+/* ================================================================
+   7. MEDIA QUERIES (RESPONSIVE)
+   ================================================================ */
+@media (max-width: 860px) {
+    .header-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
     .footer-container {
-        grid-template-columns: 1fr !important; /* Una sola columna */
+        grid-template-columns: 1fr !important;
         gap: 40px;
         text-align: center;
     }
 
     .subscribe-form {
-        flex-direction: column; /* Input arriba, botón abajo */
+        flex-direction: column;
         gap: 10px;
     }
 
-    .subscribe-form input, 
+    .subscribe-form input,
     .btn-subscribe {
-        border-radius: 4px !important; /* Quitamos los bordes pegados */
+        border-radius: 4px !important;
         width: 100%;
     }
 
     .reclamaciones {
-        margin: 25px auto; /* Centramos el libro de reclamaciones */
+        margin: 25px auto;
     }
 
     .social-icons {
-        justify-content: center; /* Centramos redes sociales */
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-inner {
+        padding: 12px 14px;
+    }
+
+    .brand {
+        width: 100%;
+        justify-content: center;
+        text-align: left;
+    }
+
+    .header-nav {
+        width: 100%;
+        order: 3;
+    }
+
+    .header-actions {
+        order: 2;
+    }
+
+    .back-link {
+        width: 100%;
+        text-align: center;
     }
 }

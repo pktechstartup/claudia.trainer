@@ -17,9 +17,9 @@
     display: none;
 }
 
-.nav-link {
+.cat-link {
     white-space: nowrap;
-    padding: 15px 0;
+    padding: 12px 16px;
     border: none;
     background: transparent;
     color: #555;
@@ -29,15 +29,18 @@
     text-transform: uppercase;
     border-bottom: 3px solid transparent;
     transition: 0.3s ease;
+    border-radius: 0; /* evita herencia del global */
 }
 
-.nav-link:hover {
+.cat-link:hover {
     color: var(--verde);
+    background: transparent; /* anula el hover del global */
 }
 
-.nav-link.active {
+.cat-link.active {
     color: var(--morado);
-    border-bottom-color: var(--morado);
+    border-bottom: 3px solid var(--morado);
+    background: transparent; /* esto es clave: NO morado sólido */
 }
 
 .category-pills {

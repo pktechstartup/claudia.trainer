@@ -11,51 +11,85 @@
 </head>
 
 <body>
-
-    <header class="shop-header">
-        <div class="header-top">
-            <div class="header-top-inner">
-                <a href="index.html" class="brand-logo">CLAUDIA.TRAINER</a>
-                <nav class="main-nav">
-                    <a href="index.html">Inicio</a>
-                    <a href="productos.html">Tienda</a>
-                    <a href="planes.html" class="active">Planes</a>
-                </nav>
-            </div>
+    <header class="site-header">
+        <div class="header-inner"> <a href="index.html" class="brand"> <img src="img/logo.png" alt="Claudia Trainer"
+                    class="brand-logo">
+                <div class="brand-text"> <span class="brand-name">CLAUDIA.TRAINER</span> <span class="brand-tagline">
+                        Entrenamiento · Bienestar · Eventos </span> </div>
+            </a>
+            <nav class="header-nav"> <a href="index.html" class="nav-link">Inicio</a> <a href="planes.html"
+                    class="nav-link active">Planes</a> <a href="productos.html" class="nav-link">Productos</a> <a
+                    href="eventos.html" class="nav-link">Eventos</a> </nav>
+            <div class="header-actions"> <a href="index.html" class="back-link"> ← Volver al inicio </a> </div>
         </div>
     </header>
-
     <main class="planes-container">
         <section class="reels-section">
-            <h2 class="section-title">Descubre nuestros <span>planes</span> en acción</h2>
-
-            <div class="carousel-wrapper">
-                <button class="arrow arrow-prev" id="prevBtn" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <h2 class="section-title">Descubre nuestros planes en acción</h2>
+            <div class="carousel-wrapper"> <button class="arrow arrow-prev" id="prevBtn" aria-label="Anterior"> <svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                         <polyline points="15 18 9 12 15 6" />
-                    </svg>
-                </button>
-                <button class="arrow arrow-next" id="nextBtn" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                        <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                </button>
-
+                    </svg> </button>
                 <div class="carousel-track-outer">
-                    <div class="carousel-track" id="carouselTrack">
-                    </div>
-                </div>
-
-                <div class="product-card-container" id="productCardContainer">
-                </div>
-
+                    <div class="carousel-track" id="carouselTrack"> </div>
+                </div> <button class="arrow arrow-next" id="nextBtn" aria-label="Siguiente"> <svg viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.2">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg> </button>
                 <div class="dots" id="dots"></div>
+                <div class="product-card-container" id="productCardContainer"> </div>
             </div>
         </section>
     </main>
-
     <script src="js/carrito.js"></script>
     <script src="js/planes.js"></script>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>SUSCRÍBETE Y MANTENTE AL DÍA</h4>
+                <form class="subscribe-form"> <input type="email" placeholder="Tu Email" required> <button type="submit"
+                        class="btn-subscribe">Suscribirme</button> </form> <label class="terms-label"> <input
+                        type="checkbox" required> Acepto los <a href="#">términos y condiciones</a> y la <a
+                        href="#">política de privacidad</a>. </label>
+            </div>
+            <div class="footer-col">
+                <h4>LA EMPRESA</h4>
+                <ul>
+                    <li><a href="#">Productos y suplementos</a></li>
+                    <li><a href="#">Planes de entrenamiento</a></li>
+                    <li><a href="#">Tu evento conmigo</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>AYUDA AL CLIENTE</h4>
+                <ul>
+                    <li><a href="#">Política de envíos</a></li>
+                    <li><a href="#">Política de devoluciones</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                </ul>
+                <div class="reclamaciones"> <img src="img/libro-reclamaciones.png" alt="Libro de Reclamaciones"
+                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3503/3503827.png'"> <span>Libro
+                        de<br>Reclamaciones</span> </div>
+            </div>
+            <div class="footer-col">
+                <div class="contact-item">
+                    <h4>LLÁMANOS</h4>
+                    <p>+51 960 510 332</p>
+                </div>
+                <div class="contact-item">
+                    <h4>ESCRÍBENOS</h4>
+                    <p>claudia.trainer@gmail.com</p>
+                </div>
+                <div class="social-icons"> <a href="#" class="icon-fb">f</a> <a href="#" class="icon-ig">ig</a> <a
+                        href="#" class="icon-tk">tk</a> </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Claudia Trainer les agradece su preferencia.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
