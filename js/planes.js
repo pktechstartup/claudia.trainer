@@ -91,7 +91,7 @@ function buildSlides() {
 
 function renderCard() {
     const p = products[currentIndex];
-    const savings = (p.originalPrice - p.currentPrice).toFixed(2);
+
     cardContainer.innerHTML = `
         <div class="product-card">
             <div class="product-info">
@@ -99,11 +99,15 @@ function renderCard() {
                 <div class="price-row">
                     <span class="price-original">S/. ${p.originalPrice.toFixed(2)}</span>
                     <span class="price-current">S/. ${p.currentPrice.toFixed(2)}</span>
-                    <span class="badge-savings">Ahorras S/. ${savings}</span>
                 </div>
             </div>
+
             <button class="btn-cart" onclick="agregarAlCarrito(${p.id})">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
             </button>
         </div>`;
 }
