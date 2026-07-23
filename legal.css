@@ -1,0 +1,113 @@
+/* ================================================================
+   LEGAL.CSS - UI/UX Optimizado para lectura
+   ================================================================ */
+
+.legal-page-wrapper {
+    width: 100%;
+    background-color: var(--gris-fondo);
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px 100px;
+    /* Espacio superior, lateral e inferior */
+}
+
+.legal-container {
+    width: 100%;
+    max-width: 800px;
+    /* Esto imita el bloque central de Alma Bonita */
+    background: transparent;
+}
+
+/* Título principal centrado */
+.legal-title {
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--morado);
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+}
+
+.legal-update-date {
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 50px;
+}
+
+/* Secciones y subtítulos */
+.legal-section {
+    margin-bottom: 40px;
+}
+
+.legal-section-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    /* Subtítulos en mayúscula como Alma Bonita */
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 8px;
+}
+
+/* Textos legibles */
+.legal-text {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    /* Interlineado alto para no cansar la vista */
+    color: #4a4a4a;
+    margin-bottom: 16px;
+    text-align: justify;
+    /* Opcional, pero left suele ser mejor en web */
+}
+
+/* Listas */
+.legal-list {
+    margin: 0 0 20px 20px;
+    padding-left: 20px;
+}
+
+.legal-list li {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+.legal-list li::marker {
+    color: var(--verde);
+}
+
+/* Cajas de resaltado para tus reglas innegociables */
+.legal-highlight-box {
+    background-color: rgba(24, 199, 154, 0.08);
+    border-left: 4px solid var(--verde);
+    padding: 20px 24px;
+    margin: 30px 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.legal-highlight-box p {
+    margin: 0;
+    font-weight: 700;
+    color: var(--morado);
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .legal-page-wrapper {
+        padding: 40px 16px 60px;
+    }
+
+    .legal-title {
+        font-size: 2rem;
+    }
+}

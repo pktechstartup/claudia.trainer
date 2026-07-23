@@ -1,13 +1,5 @@
 /* ================================================================
-   INDEX.CSS LIMPIO
-   Mobile first + desktop
-   ================================================================ */
-
-
-/* ================================================================
    1. BASE GENERAL
-   - Evita scroll horizontal.
-   - Define la estructura principal del index.
    ================================================================ */
 
 html,
@@ -77,10 +69,24 @@ li,
     outline-offset: 4px;
 }
 
+/* ================================================================
+   CLASE MODIFICADORA PARA BOTONES ESTÁTICOS
+   ================================================================ */
+
+.btn-static {
+    pointer-events: none;
+    cursor: default;
+    background: transparent;
+}
+
+.btn-secondary.btn-static:hover {
+    background: transparent;
+    color: var(--morado);
+    transform: none;
+}
 
 /* ================================================================
    3. SECCIÓN LINKTREE CON FONDO
-   - Fondo con imagen y desvanecido hacia el bloque verde.
    ================================================================ */
 
 .linktree-background {
@@ -94,16 +100,12 @@ li,
     position: relative;
     overflow: hidden;
     isolation: isolate;
-
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(255, 255, 255, 0.78) 0%,
             rgba(255, 255, 255, 0.54) 45%,
-            #f3fffb 100%
-        ),
+            #f3fffb 100%),
         url("img/fondo.jpg");
-
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -279,13 +281,14 @@ li,
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     background: #f3fffb;
-    padding: 44px 16px 120px; /* aumenté el padding inferior para darle espacio al degradado */
+    padding: 44px 16px 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    position: relative; /* necesario para usar ::after */
+    position: relative;
 }
+
 .green-page-section::after {
     content: "";
     position: absolute;
@@ -294,14 +297,12 @@ li,
     width: 100%;
     height: 100px;
     pointer-events: none;
-    background: linear-gradient(
-        to bottom,
-        rgba(243, 255, 251, 0) 0%,
-        rgba(243, 255, 251, 0.75) 20%,
-        #eefcf8 40%,
-        #f3f8fb 68%,
-        #f7f3ff 100%
-    );
+    background: linear-gradient(to bottom,
+            rgba(243, 255, 251, 0) 0%,
+            rgba(243, 255, 251, 0.75) 20%,
+            #eefcf8 40%,
+            #f3f8fb 68%,
+            #f7f3ff 100%);
 }
 
 
@@ -680,12 +681,14 @@ li,
 
 
 /* ================================================================
-   13. MI MÉTODO - IMAGEN
+   13. MI MÉTODO - IMAGEN (Corregido para celular)
    ================================================================ */
 
 .method-hero-media {
     position: relative;
-    min-height: 280px;
+    /* Limitamos la altura máxima en celulares para que no sea gigante */
+    height: 280px;
+    max-height: 35vh;
     background: var(--morado);
     display: flex;
     align-items: stretch;
@@ -706,12 +709,10 @@ li,
     left: auto;
     width: 32%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        rgba(247, 243, 255, 0) 0%,
-        rgba(247, 243, 255, 0.75) 65%,
-        #f7f3ff 100%
-    );
+    background: linear-gradient(90deg,
+            rgba(247, 243, 255, 0) 0%,
+            rgba(247, 243, 255, 0.75) 65%,
+            #f7f3ff 100%);
     pointer-events: none;
     z-index: 2;
 }
@@ -729,7 +730,7 @@ li,
 
 
 /* ================================================================
-   14. MI MÉTODO - BENEFICIOS
+   14. MI MÉTODO - BENEFICIOS (Corregido el corazón)
    ================================================================ */
 
 .method-benefits-card {
@@ -764,6 +765,13 @@ li,
     padding: 10px 8px;
 }
 
+/* Magia: El 5to elemento (el corazón) abarcará todo el ancho y se centrará */
+.method-benefit-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
 .benefit-icon {
     display: inline-flex;
     align-items: center;
@@ -779,6 +787,13 @@ li,
     line-height: 1.35;
     font-weight: 800;
     margin: 0;
+}
+
+.benefit-icon-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
 }
 
 
@@ -855,9 +870,83 @@ li,
     margin-top: 0;
 }
 
+/* ================================================================
+   16.5 TABLETS (Punto de quiebre para iPad y similares)
+   ================================================================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Hacemos la foto de la entrenadora mucho más proporcionada */
+    .landing-hero-media {
+        max-width: 480px; 
+        margin: 0 auto;
+    }
+
+    .landing-hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .landing-description {
+        font-size: 1.1rem;
+        max-width: 650px;
+    }
+
+    /* Botones uno al lado del otro */
+    .hero-actions {
+        flex-direction: row; 
+        justify-content: center;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: auto;
+        min-width: 220px;
+    }
+
+    /* Ajustes para "Quién soy" */
+    .about-copy {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .green-about .about-copy h2 {
+        font-size: 2.4rem;
+        text-align: center;
+    }
+
+    .green-about .about-intro {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    /* --- NUEVO: CENTRAR EL SEGUNDO BLOQUE ("MI MÉTODO") EN TABLET --- */
+    .method-hero-copy {
+        align-items: center; /* Centra horizontalmente el título, texto y botón */
+        text-align: center;  /* Centra el texto alineado */
+        padding: 40px 30px;
+    }
+
+    .method-hero-copy h2 {
+        max-width: 100%;
+    }
+
+    .method-hero-description {
+        max-width: 100%;
+    }
+
+    .method-cta {
+        width: fit-content;  /* Hace que el botón mantenga su tamaño elegante y no ocupe todo el ancho */
+        margin: 0 auto;
+    }
+    /* ------------------------------------------------------------- */
+
+    /* Imagen Método morada más grande para tablet */
+    .method-hero-media {
+        height: 400px;
+        max-height: none;
+    }
+}
 
 /* ================================================================
-   17. DESKTOP
+   17. DESKTOP (PCs y Pantallas grandes)
    ================================================================ */
 
 @media (min-width: 1024px) {
@@ -1026,7 +1115,9 @@ li,
     .method-hero-media {
         grid-column: 1;
         grid-row: 1;
+        height: auto;
         min-height: 350px;
+        max-height: none;
     }
 
     .method-hero-copy {
@@ -1060,6 +1151,13 @@ li,
         max-width: 1040px;
         grid-template-columns: repeat(5, 1fr);
         gap: 18px;
+    }
+
+    /* Como ahora son 5 columnas en PC, desactivamos el centrado forzado del corazón */
+    .method-benefit-item:last-child:nth-child(odd) {
+        grid-column: auto;
+        max-width: none;
+        margin: 0;
     }
 
     .benefit-icon {

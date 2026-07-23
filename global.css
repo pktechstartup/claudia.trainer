@@ -5,24 +5,18 @@
     /* Paleta Principal */
     --morado: #513682;
     --rose: #513682;
-    /* Se mantiene para compatibilidad con tus clases */
     --verde: #18C79A;
     --verde-claudia: #18C79A;
-    /* Se mantiene para compatibilidad */
-
-    /* Colores Neutros y Fondos */
     --blanco: #ffffff;
     --gris-fondo: #ffffff;
     --negro: #000000;
     --bg-header: rgba(107, 72, 173, 0.479);
 
-    /* Textos */
     --texto-dark: #2d2d2d;
     --text-dark: #2f2445;
     --gris-texto: #bbbbbb;
     --text-muted: #6f6780;
 
-    /* Utilidades */
     --amarillo-aviso: #FFD700;
     --sombra: 0 10px 30px rgba(81, 54, 130, 0.12);
     --borde-suave: #e0e0e0;
@@ -67,7 +61,6 @@ body {
 .shop-header {
     width: 100%;
     z-index: 1000;
-    /* Corregido: subido de 200 a 1000 para evitar solapamientos */
     position: sticky;
     top: 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -79,7 +72,6 @@ body {
     justify-content: center;
     padding: 25px 0;
     background-color: var(--morado);
-    /* Nota: Revisa estas dos líneas si tu header se sigue cortando */
     box-shadow: 0 0 0 100vmax var(--morado);
     clip-path: inset(0 -100vmax 0 -100vmax);
 }
@@ -92,13 +84,6 @@ body {
     max-width: 1200px;
     padding: 0 20px;
     gap: 30px;
-}
-
-.brand-logo {
-    color: var(--blanco);
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    white-space: nowrap;
 }
 
 .search-box {
@@ -115,7 +100,6 @@ body {
     outline: none;
     background: #ffffff;
     color: white;
-    /* Considera cambiar esto si el fondo es blanco */
     transition: 0.3s;
 }
 
@@ -130,16 +114,24 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    position: relative; /* ¡Esto es clave! Convierte al icono en la base para el círculo */
 }
 
 #cart-count {
+    position: absolute; /* Saca al círculo de la línea normal */
+    top: -13px; /* Lo sube por encima del icono */
+    right: -15px; /* Lo empuja hacia la derecha */
     background: var(--verde);
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     font-weight: bold;
-    padding: 2px 8px;
+    min-width: 20px;
+    height: 20px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
 }
 
 /* ================================================================
@@ -163,6 +155,18 @@ body {
     align-items: center;
     gap: 18px;
     justify-content: space-between;
+}
+
+/* ESTILOS DEL MENÚ HAMBURGUESA */
+.hamburger-menu {
+    display: none;
+    /* Oculto por defecto en computadoras */
+    cursor: pointer;
+    color: var(--rose);
+}
+
+.close-menu {
+    display: none;
 }
 
 .brand {
@@ -233,23 +237,6 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.back-link {
-    text-decoration: none;
-    background: var(--verde-claudia);
-    color: #fff;
-    font-weight: 700;
-    padding: 10px 16px;
-    border-radius: 999px;
-    box-shadow: 0 8px 18px rgba(24, 199, 154, 0.22);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    white-space: nowrap;
-}
-
-.back-link:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(24, 199, 154, 0.28);
 }
 
 /* ================================================================
@@ -490,7 +477,6 @@ body {
     filter: brightness(1.1);
 }
 
-/* Resto de estilos del footer... */
 .terms-label {
     display: flex;
     align-items: flex-start;
@@ -532,8 +518,11 @@ body {
 }
 
 .reclamaciones img {
-    width: 30px;
-    filter: invert(1);
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    filter: none;
 }
 
 .reclamaciones span {
@@ -594,22 +583,140 @@ body {
 /* ================================================================
    7. MEDIA QUERIES (RESPONSIVE)
    ================================================================ */
-@media (max-width: 860px) {
-    .header-inner {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 
-    .header-actions {
-        width: 100%;
-        justify-content: center;
+/* FOOTER EN TABLETS (1024px) - Pasa de 4 a 2 columnas */
+@media (max-width: 1024px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
     }
 }
 
+/* HEADER Y DISEÑO EN MÓVILES (860px) */
+@media (max-width: 860px) {
+
+    /* HEADER: Filas y Columnas con CSS Grid */
+    .header-inner {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto;
+        /* Hamburguesa | Logo | Carrito */
+        grid-template-rows: auto auto;
+        /* Fila 1: Logo/Iconos | Fila 2: Buscador */
+        gap: 15px;
+        padding: 15px 20px;
+        align-items: center;
+    }
+
+    .hamburger-menu {
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    /* CORRECCIÓN DEL LOGO Y NOMBRE (CON SUBTÍTULO EN MÓVIL) */
+    .brand {
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .brand-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        line-height: 1.1;
+    }
+
+    .brand-name {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--rose);
+        letter-spacing: 0.04em;
+        margin: 0;
+    }
+
+    .brand-tagline {
+        display: block;
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+        white-space: nowrap;
+    }
+
+    .header-actions {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .search-box {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        max-width: 100%;
+    }
+
+    /* DISEÑO TIPO APP PARA EL MENÚ (Se desliza desde la izquierda) */
+    .header-nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--blanco);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 70px 20px 20px;
+        box-shadow: 5px 0 20px rgba(0, 0, 0, 0.15);
+        transition: left 0.3s ease;
+        z-index: 2000;
+    }
+
+    .header-nav.active {
+        left: 0;
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: left;
+        padding: 18px 15px;
+        border-bottom: 1px solid var(--borde-suave);
+        border-radius: 0;
+        font-size: 1.1rem;
+    }
+
+    .nav-link:hover {
+        transform: none;
+    }
+
+    .close-menu {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 3rem;
+        color: var(--morado);
+        cursor: pointer;
+        line-height: 1;
+    }
+}
+
+/* FOOTER Y AJUSTES FINALES EN CELULARES PEQUEÑOS (768px) */
 @media (max-width: 768px) {
+
+    /* El footer pasa a 1 sola columna centrada */
     .footer-container {
         grid-template-columns: 1fr !important;
-        gap: 40px;
         text-align: center;
     }
 
@@ -630,31 +737,5 @@ body {
 
     .social-icons {
         justify-content: center;
-    }
-}
-
-@media (max-width: 600px) {
-    .header-inner {
-        padding: 12px 14px;
-    }
-
-    .brand {
-        width: 100%;
-        justify-content: center;
-        text-align: left;
-    }
-
-    .header-nav {
-        width: 100%;
-        order: 3;
-    }
-
-    .header-actions {
-        order: 2;
-    }
-
-    .back-link {
-        width: 100%;
-        text-align: center;
     }
 }

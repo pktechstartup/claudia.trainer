@@ -1,12 +1,9 @@
 :root {
     --pink-soft: #f2f0f7;
-    /* Gris morado suave */
     --rose: #513682;
-    /* Morado Claudia */
     --verde-claudia: #18C79A;
 }
 
-/* Contenedor de planes */
 .planes-container {
     width: 100%;
     max-width: 1200px;
@@ -14,14 +11,11 @@
     padding: 40px 20px;
 }
 
-/* Sección de reels */
 .reels-section {
     width: 100%;
 }
 
-/* Títulos con el estilo Cormorant del código nuevo */
 .section-title {
-    font-family: 'Cormorant Garamond', serif;
     font-size: 2.2rem;
     text-align: center;
     margin: 40px 0;
@@ -32,69 +26,81 @@
     font-style: italic;
 }
 
-/* CARRUSEL CENTRAL */
+/* ================================================================
+   1. CARRUSEL INFINITO Y TAMAÑOS
+   ================================================================ */
+
 .carousel-wrapper {
     position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
-    padding: 30px 0;
+    gap: 0;
+    padding: 10px 0 30px;
+    overflow: hidden;
 }
 
-/* Contenedor externo del carrusel */
 .carousel-track-outer {
     position: relative;
     width: 100%;
-    max-width: 800px;
-    height: 500px;
+    max-width: 1200px;
+    height: 560px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible;
-    perspective: 1200px;
 }
 
-/* Track del carrusel con animación 3D */
 .carousel-track {
-    position: absolute;
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
+    position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Diapositivas individuales */
 .slide {
-    flex: 0 0 auto;
-    position: relative;
-    width: 220px;
-    height: 350px;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: brightness(0.4) blur(3px);
-    transform: scale(0.7) translateZ(-100px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 520px;
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    filter: brightness(0.3) blur(6px);
     z-index: 1;
+    opacity: 0;
+    border-radius: 20px;
 }
 
 .slide.active {
-    width: 320px;
-    height: 500px;
+    transform: translate(-50%, -50%) scale(1);
     filter: brightness(1) blur(0);
-    transform: scale(1) translateZ(0);
-    z-index: 10;
+    z-index: 5;
+    opacity: 1;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
 }
 
-/* Video wrapper */
+.slide.prev {
+    transform: translate(-160%, -50%) scale(0.85);
+    filter: brightness(0.5) blur(2px);
+    z-index: 4;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.slide.next {
+    transform: translate(60%, -50%) scale(0.85);
+    filter: brightness(0.5) blur(2px);
+    z-index: 4;
+    opacity: 1;
+    cursor: pointer;
+}
+
 .video-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
     background: #000;
-    border-radius: 25px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(81, 54, 130, 0.3);
 }
@@ -108,7 +114,6 @@
     object-fit: cover;
 }
 
-/* Botón de mute */
 .mute-btn {
     position: absolute;
     bottom: 15px;
@@ -136,7 +141,7 @@
     height: 24px;
 }
 
-/* Flechas de navegación */
+/* FLECHAS PERFECTAMENTE CENTRADAS Y PEGADAS A LOS BORDES */
 .arrow {
     position: absolute;
     top: 50%;
@@ -166,148 +171,231 @@
 }
 
 .arrow-prev {
-    left: -70px;
+    left: 15px;
 }
 
 .arrow-next {
-    right: -70px;
+    right: 15px;
 }
 
-/* Puntos de navegación */
-.dots {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
+/* ================================================================
+   2. TARJETA DINÁMICA (ALINEADA Y PEGADA AL VIDEO)
+   ================================================================ */
+
+#productCardContainer {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
 }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ddd;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.dot.active {
-    background: var(--verde-claudia);
-    width: 30px;
-    border-radius: 6px;
-}
-
-/* Ficha de producto */
 .product-card-container {
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 360px;
+    margin: -10px auto 0;
 }
 
 .product-card {
     background: white;
     border-radius: 15px;
-    padding: 20px 25px;
+    padding: 25px 25px;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.product-thumb {
-    width: 80px;
-    height: 80px;
-    border-radius: 12px;
+.product-header {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.product-info {
-    flex: 1;
+    flex-direction: column;
+    width: 100%;
 }
 
 .product-name {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 5px;
     color: var(--rose);
 }
 
-.price-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    font-size: 0.95rem;
-}
-
-.price-original {
-    text-decoration: line-through;
-    color: #999;
-}
-
-.price-current {
-    font-weight: 700;
-    color: var(--verde-claudia);
-    font-size: 1.1rem;
-}
-
-.badge-savings {
-    background: #FFE5E5;
-    color: #c00;
-    padding: 4px 8px;
-    border-radius: 4px;
+.product-subtitle {
     font-size: 0.85rem;
-    font-weight: 600;
+    color: #666;
+    margin-bottom: 5px;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.4;
 }
 
-.btn-cart {
-    background: var(--verde-claudia);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s;
+/* --- NUEVO BOTÓN DE WHATSAPP --- */
+.btn-whatsapp-plan {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px 20px;
+    background: var(--verde-claudia);
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 999px; /* Botón en forma de píldora */
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.95rem;
 }
 
-.btn-cart:hover {
-    transform: scale(1.1);
+.btn-whatsapp-plan:hover {
     background: var(--rose);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(81, 54, 130, 0.2);
+}
+/* -------------------------------- */
+
+.product-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
 }
 
-.btn-cart svg {
-    width: 24px;
-    height: 24px;
+.product-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
-/* RESPONSIVE MÓVIL */
+.product-features li svg {
+    width: 18px;
+    height: 18px;
+    color: var(--verde-claudia);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* ================================================================
+   3. SECCIÓN DE TESTIMONIOS (TEXTO ENVOLVENTE)
+   ================================================================ */
+
+.testimonials-section {
+    width: 100%;
+    margin-top: 60px;
+    padding-top: 40px;
+}
+
+.testimonials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.testimonial-horizontal-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px;
+    border: 1px solid rgba(81, 54, 130, 0.08);
+    box-shadow: 0 10px 30px rgba(81, 54, 130, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Evita que el texto corto colapse la imagen */
+    display: flow-root;
+}
+
+.testimonial-horizontal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(81, 54, 130, 0.1);
+}
+
+/* IMAGEN FLOTANTE (Permite que el texto la abrace) */
+.testimonial-image {
+    float: left;
+    width: 250px;
+    height: 320px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    margin-bottom: 15px;
+}
+
+.testimonial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.testimonial-horizontal-card:hover .testimonial-image img {
+    transform: scale(1.05);
+}
+
+.testimonial-body {
+    display: block;
+}
+
+.stars {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.testimonial-text {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.testimonial-author {
+    display: block;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.author-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: var(--rose);
+    font-size: 1.1rem;
+}
+
+/* ================================================================
+   4. RESPONSIVE (MÓVILES Y TABLETS) - UNIFICADO
+   ================================================================ */
+
 @media (max-width: 768px) {
+
+    /* Ajustes Carrusel */
     .carousel-wrapper {
-        gap: 30px;
-        padding: 20px 0;
+        padding: 10px 0;
     }
 
     .carousel-track-outer {
-        height: 350px;
-        max-width: 100%;
+        height: 420px;
     }
 
     .slide {
-        width: 180px;
-        height: 280px;
-    }
-
-    .slide.active {
         width: 240px;
         height: 380px;
+    }
+
+    .slide.prev {
+        transform: translate(-140%, -50%) scale(0.8);
+        opacity: 0.6;
+    }
+
+    .slide.next {
+        transform: translate(40%, -50%) scale(0.8);
+        opacity: 0.6;
     }
 
     .arrow-prev {
@@ -323,22 +411,41 @@
         height: 40px;
     }
 
-    .product-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
-    }
-
-    .product-info {
-        width: 100%;
-    }
-
-    .price-row {
-        justify-content: center;
-    }
-
     .section-title {
         font-size: 1.8rem;
     }
-}
 
+    /* Ajustes Tarjeta Dinámica */
+    .product-card-container {
+        max-width: 90%;
+    }
+
+    .product-card {
+        padding: 20px;
+    }
+
+    /* Ajustes Testimonios */
+    .testimonial-horizontal-card {
+        padding: 25px;
+    }
+
+    .testimonial-image {
+        float: none;
+        /* Desactiva el envoltorio de texto en pantallas pequeñas */
+        margin: 0 auto 25px auto;
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        height: 280px;
+    }
+
+    .testimonial-text {
+        text-align: left;
+        /* Quitamos justificado en móviles para facilitar la lectura */
+        font-size: 0.95rem;
+    }
+
+    .testimonial-author {
+        text-align: left;
+    }
+}
