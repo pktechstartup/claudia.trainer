@@ -26,9 +26,6 @@
     font-style: italic;
 }
 
-/* ================================================================
-   1. CARRUSEL INFINITO Y TAMAÑOS
-   ================================================================ */
 
 .carousel-wrapper {
     position: relative;
@@ -141,7 +138,6 @@
     height: 24px;
 }
 
-/* FLECHAS PERFECTAMENTE CENTRADAS Y PEGADAS A LOS BORDES */
 .arrow {
     position: absolute;
     top: 50%;
@@ -178,9 +174,6 @@
     right: 15px;
 }
 
-/* ================================================================
-   2. TARJETA DINÁMICA (ALINEADA Y PEGADA AL VIDEO)
-   ================================================================ */
 
 #productCardContainer {
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -224,7 +217,6 @@
     line-height: 1.4;
 }
 
-/* --- NUEVO BOTÓN DE WHATSAPP --- */
 .btn-whatsapp-plan {
     display: flex;
     align-items: center;
@@ -238,7 +230,7 @@
     text-decoration: none;
     font-weight: 800;
     font-family: 'Montserrat', sans-serif;
-    border-radius: 999px; /* Botón en forma de píldora */
+    border-radius: 999px; 
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     font-size: 0.95rem;
 }
@@ -248,7 +240,7 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(81, 54, 130, 0.2);
 }
-/* -------------------------------- */
+
 
 .product-features {
     list-style: none;
@@ -277,9 +269,6 @@
     margin-top: 2px;
 }
 
-/* ================================================================
-   3. SECCIÓN DE TESTIMONIOS (TEXTO ENVOLVENTE)
-   ================================================================ */
 
 .testimonials-section {
     width: 100%;
@@ -304,7 +293,6 @@
     box-shadow: 0 10px 30px rgba(81, 54, 130, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    /* Evita que el texto corto colapse la imagen */
     display: flow-root;
 }
 
@@ -313,7 +301,6 @@
     box-shadow: 0 15px 40px rgba(81, 54, 130, 0.1);
 }
 
-/* IMAGEN FLOTANTE (Permite que el texto la abrace) */
 .testimonial-image {
     float: left;
     width: 250px;
@@ -368,13 +355,9 @@
     font-size: 1.1rem;
 }
 
-/* ================================================================
-   4. RESPONSIVE (MÓVILES Y TABLETS) - UNIFICADO
-   ================================================================ */
 
 @media (max-width: 768px) {
 
-    /* Ajustes Carrusel */
     .carousel-wrapper {
         padding: 10px 0;
     }
@@ -415,7 +398,6 @@
         font-size: 1.8rem;
     }
 
-    /* Ajustes Tarjeta Dinámica */
     .product-card-container {
         max-width: 90%;
     }
@@ -431,7 +413,6 @@
 
     .testimonial-image {
         float: none;
-        /* Desactiva el envoltorio de texto en pantallas pequeñas */
         margin: 0 auto 25px auto;
         display: block;
         width: 100%;
@@ -441,7 +422,6 @@
 
     .testimonial-text {
         text-align: left;
-        /* Quitamos justificado en móviles para facilitar la lectura */
         font-size: 0.95rem;
     }
 

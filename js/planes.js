@@ -40,7 +40,6 @@ let isMuted = true;
 let track;
 let cardContainer;
 
-// 1. CONSTRUIR LOS VIDEOS EN EL DOM
 function buildSlides() {
     track = document.getElementById('carouselTrack');
     cardContainer = document.getElementById('productCardContainer');
@@ -75,7 +74,6 @@ function buildSlides() {
 
         slide.appendChild(vw);
 
-        // Clic en los videos laterales para navegar hacia ellos
         slide.onclick = () => {
             if (i !== currentIndex) goTo(i);
         };
@@ -84,10 +82,9 @@ function buildSlides() {
     });
 
     updateTrack();
-    renderCard(false); // Falso para no hacer animación inicial
+    renderCard(false); 
 }
 
-// 2. ACTUALIZAR POSICIÓN DE LOS VIDEOS (CARRUSEL INFINITO)
 function updateTrack() {
     const slides = document.querySelectorAll('.slide');
     const total = slides.length;
@@ -105,8 +102,6 @@ function updateTrack() {
     });
 }
 
-// 3. RENDERIZAR LA TARJETA DE INFORMACIÓN CON ANIMACIÓN Y BOTÓN WHATSAPP
-// 3. RENDERIZAR LA TARJETA DE INFORMACIÓN CON ANIMACIÓN Y BOTÓN WHATSAPP
 function renderCard(animate = true) {
     const p = products[currentIndex];
 
@@ -119,12 +114,10 @@ function renderCard(animate = true) {
         </li>
     `).join('');
 
-    // Generar el enlace dinámico a WhatsApp
     const numeroWhatsApp = "51960510332"; 
     const mensajePredefinido = `Hola Claudia, estoy interesada en el "${p.name}". Me gustaría recibir más información.`;
     const enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajePredefinido)}`;
 
-    // EL BOTÓN AHORA ESTÁ AL FINAL (DESPUÉS DE LOS BENEFICIOS)
     const cardHTML = `
         <div class="product-card">
             <div class="product-header">
@@ -156,7 +149,7 @@ function renderCard(animate = true) {
         cardContainer.innerHTML = cardHTML;
     }
 }
-// 4. FUNCIONES DE NAVEGACIÓN Y REPRODUCCIÓN
+
 function goTo(index) {
     stopVideo(currentIndex);
     currentIndex = ((index % products.length) + products.length) % products.length;
@@ -188,7 +181,7 @@ function stopVideo(index) {
     }
 }
 
-// 5. CONTROL DE AUDIO
+
 function toggleMute() {
     isMuted = !isMuted;
     const videos = document.querySelectorAll('video');
@@ -203,7 +196,6 @@ function muteIcon(muted) {
         `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`;
 }
 
-// 6. EVENTOS DE INICIALIZACIÓN
 document.addEventListener('DOMContentLoaded', function () {
     buildSlides();
     setTimeout(() => { playVideo(0); }, 200);

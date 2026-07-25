@@ -1,20 +1,26 @@
-/* ================================================================
-   5. NAVEGACIÓN DE CATEGORÍAS Y FILTROS
-   ================================================================ */
 .category-nav {
     background-color: #ffffff;
     display: flex;
-    justify-content: center;
-    padding: 1px 0;
+    justify-content: flex-start;
+    padding: 1px 15px;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 0 0 100vmax #ffffff;
     clip-path: inset(0 -100vmax 0 -100vmax);
     overflow-x: auto;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 }
 
 .category-nav::-webkit-scrollbar {
     display: none;
+}
+
+@media (min-width: 1024px) {
+    .category-nav {
+        justify-content: center;
+        padding: 1px 0;
+    }
 }
 
 .cat-link {
@@ -29,48 +35,20 @@
     text-transform: uppercase;
     border-bottom: 3px solid transparent;
     transition: 0.3s ease;
-    border-radius: 0; /* evita herencia del global */
+    border-radius: 0;
 }
 
 .cat-link:hover {
     color: var(--verde);
-    background: transparent; /* anula el hover del global */
+    background: transparent;
 }
 
 .cat-link.active {
     color: var(--morado);
     border-bottom: 3px solid var(--morado);
-    background: transparent; /* esto es clave: NO morado sólido */
-}
-
-.category-pills {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 12px 0;
-    scrollbar-width: none;
-    margin: 0;
-}
-
-.pill {
-    white-space: nowrap;
-    padding: 8px 20px;
-    border-radius: 20px;
-    border: 1px solid var(--morado);
     background: transparent;
-    color: var(--morado);
-    cursor: pointer;
-    font-weight: 600;
 }
 
-.pill.active {
-    background: var(--morado);
-    color: white;
-}
-
-/* ================================================================
-   X. CARRUSEL DE MARCAS
-   ================================================================ */
 .brands-carousel-section {
     background: var(--blanco);
     padding: 20px 0;
@@ -103,65 +81,131 @@
     100% { transform: translateX(-50%); }
 }
 
-/* ================================================================
-   Y. OFERTAS DEL MES (NUEVO DISEÑO)
-   ================================================================ */
-.promo-carousel {
+.home-layout {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 15px;
+    width: 100%;
+    padding: 0 16px; 
+}
+
+.carousel-section {
+    margin-bottom: 40px;
+}
+
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 0 16px;
+}
+
+.carousel-title {
+    font-size: 1.2rem;
+    color: var(--rose);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin: 0;
+    margin-bottom: 25px;
+    padding: 0 16px;
+}
+
+.carousel-header .carousel-title {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.btn-ver-todos-text {
+    background: none;
+    border: none;
+    color: var(--verde);
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+}
+
+.carousel-container {
     display: flex;
     gap: 15px;
     overflow-x: auto;
-    padding: 10px 0 30px;
-    scrollbar-width: none;
+    padding-bottom: 15px;
     scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
-.promo-item {
-    background: var(--verde);
-    color: white;
-    padding: 12px 25px;
-    border-radius: 6px;
-    white-space: nowrap;
-    font-size: 0.95rem;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(24, 199, 154, 0.3);
-    transition: transform 0.2s, background 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 280px;
-    scroll-snap-align: start;
-}
-
-.promo-item:hover {
-    transform: translateY(-3px);
-    background: #15b088;
-}
-
-.promo-item strong {
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* ================================================================
-   9. CATÁLOGO DE PRODUCTOS Y BOTONES
-   ================================================================ */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 13px;
-    width: 100%;
+.carousel-container::-webkit-scrollbar {
+    display: none;
 }
 
 .product-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
     background: white;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--sombra);
     transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card.carousel-card {
+    flex: 0 0 70%;
+    max-width: 260px;
+    scroll-snap-align: start;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .product-card.carousel-card {
+        flex: 0 0 220px;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        padding: 0; 
+    }
+
+    .carousel-container {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.ver-todos-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f3ff;
+    border: 2px dashed var(--morado);
+    box-shadow: none;
+    cursor: pointer;
+    text-align: center;
+    color: var(--morado);
+    font-weight: 800;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.ver-todos-card:hover {
+    background: var(--morado);
+    color: white;
 }
 
 .product-card img {
@@ -215,19 +259,6 @@
     pointer-events: none;
 }
 
-.badge.restock {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--amarillo-aviso);
-    font-size: 0.7rem;
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 5px;
-    transform: none;
-    width: auto;
-}
-
 .card-buttons {
     margin-top: auto;
     display: flex;
@@ -269,7 +300,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
     border: none;
     cursor: pointer;
 }
@@ -279,42 +309,46 @@
     color: white;
 }
 
-.btn-buy {
-    display: block;
-    text-align: center;
+
+.carousel-wrapper {
+    position: relative;
+}
+
+.carousel-arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
     background: var(--morado);
     color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.3s;
 }
 
-@media (max-width: 768px) {
-    .header-top-inner {
-        flex-wrap: wrap; /* Permite que los elementos bajen si no caben */
-        justify-content: space-between;
-        gap: 15px;
-        padding: 0 15px;
-    }
+.carousel-arrow:hover {
+    background: var(--verde);
+    transform: translateY(-50%) scale(1.1);
+}
 
-    .brand-logo {
-        font-size: 1.2rem; /* Logo un poco más pequeño en móvil */
-        order: 1;
-    }
-
-    .cart-trigger {
-        order: 2;
-    }
-
-    .search-box {
-        order: 3;
-        width: 100%; /* El buscador ocupa todo el ancho abajo */
-        max-width: none;
+@media (min-width: 1024px) {
+    .carousel-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
-    .search-box input {
-        padding: 10px;
+    .carousel-wrapper {
+        padding: 0 60px; 
     }
+
+    .left-arrow { left: 5px; }
+    .right-arrow { right: 5px; }
 }
+

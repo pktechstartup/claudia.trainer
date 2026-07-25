@@ -1,8 +1,5 @@
-/* ================================================================
-   1. VARIABLES DE MARCA Y CONFIGURACIÓN BASE
-   ================================================================ */
+
 :root {
-    /* Paleta Principal */
     --morado: #513682;
     --rose: #513682;
     --verde: #18C79A;
@@ -35,9 +32,7 @@ body {
     color: var(--texto-dark);
 }
 
-/* ================================================================
-   2. CONFIGURACIÓN GLOBAL PARA PANTALLA COMPLETA
-   ================================================================ */
+
 .main-container.full-page {
     display: block !important;
     width: 100% !important;
@@ -55,9 +50,6 @@ body {
     display: block !important;
 }
 
-/* ================================================================
-   3. HEADER ESTILO NUTRIFORMA (TIENDA)
-   ================================================================ */
 .shop-header {
     width: 100%;
     z-index: 1000;
@@ -114,13 +106,13 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
-    position: relative; /* ¡Esto es clave! Convierte al icono en la base para el círculo */
+    position: relative;
 }
 
 #cart-count {
-    position: absolute; /* Saca al círculo de la línea normal */
-    top: -13px; /* Lo sube por encima del icono */
-    right: -15px; /* Lo empuja hacia la derecha */
+    position: absolute; 
+    top: -13px;
+    right: -15px;
     background: var(--verde);
     color: white;
     font-size: 0.75rem;
@@ -134,9 +126,7 @@ body {
     padding: 2px;
 }
 
-/* ================================================================
-   4. SITE HEADER (VERSIÓN TRANSPARENTE/BLUR)
-   ================================================================ */
+
 .site-header {
     position: sticky;
     top: 0;
@@ -157,10 +147,8 @@ body {
     justify-content: space-between;
 }
 
-/* ESTILOS DEL MENÚ HAMBURGUESA */
 .hamburger-menu {
     display: none;
-    /* Oculto por defecto en computadoras */
     cursor: pointer;
     color: var(--rose);
 }
@@ -239,9 +227,6 @@ body {
     gap: 10px;
 }
 
-/* ================================================================
-   5. SISTEMA DE CARRITO (BARRA LATERAL)
-   ================================================================ */
 #cart-sidebar {
     position: fixed;
     right: 0;
@@ -390,9 +375,6 @@ body {
     text-decoration: underline;
 }
 
-/* ================================================================
-   6. FOOTER PRINCIPAL
-   ================================================================ */
 .main-footer {
     background-color: var(--morado);
     color: var(--blanco);
@@ -580,11 +562,6 @@ body {
     font-size: 0.8rem;
 }
 
-/* ================================================================
-   7. MEDIA QUERIES (RESPONSIVE)
-   ================================================================ */
-
-/* FOOTER EN TABLETS (1024px) - Pasa de 4 a 2 columnas */
 @media (max-width: 1024px) {
     .footer-container {
         grid-template-columns: repeat(2, 1fr);
@@ -592,16 +569,15 @@ body {
     }
 }
 
-/* HEADER Y DISEÑO EN MÓVILES (860px) */
+
 @media (max-width: 860px) {
 
-    /* HEADER: Filas y Columnas con CSS Grid */
     .header-inner {
         display: grid !important;
         grid-template-columns: auto 1fr auto;
-        /* Hamburguesa | Logo | Carrito */
+
         grid-template-rows: auto auto;
-        /* Fila 1: Logo/Iconos | Fila 2: Buscador */
+
         gap: 15px;
         padding: 15px 20px;
         align-items: center;
@@ -613,7 +589,7 @@ body {
         grid-row: 1;
     }
 
-    /* CORRECCIÓN DEL LOGO Y NOMBRE (CON SUBTÍTULO EN MÓVIL) */
+
     .brand {
         grid-column: 2;
         grid-row: 1;
@@ -664,7 +640,6 @@ body {
         max-width: 100%;
     }
 
-    /* DISEÑO TIPO APP PARA EL MENÚ (Se desliza desde la izquierda) */
     .header-nav {
         position: fixed;
         top: 0;
@@ -711,10 +686,9 @@ body {
     }
 }
 
-/* FOOTER Y AJUSTES FINALES EN CELULARES PEQUEÑOS (768px) */
+
 @media (max-width: 768px) {
 
-    /* El footer pasa a 1 sola columna centrada */
     .footer-container {
         grid-template-columns: 1fr !important;
         text-align: center;
