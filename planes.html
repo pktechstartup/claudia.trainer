@@ -14,7 +14,6 @@
     <header class="site-header">
         <div class="header-inner">
 
-            <!-- 1. BOTÓN HAMBURGUESA (Aparece solo en móviles) -->
             <div class="hamburger-menu" onclick="toggleMenu()">
                 <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -24,7 +23,6 @@
                 </svg>
             </div>
 
-            <!-- LOGO -->
             <a href="index.html" class="brand">
                 <img src="img/logo.png" alt="Claudia Trainer" class="brand-logo">
                 <div class="brand-text">
@@ -33,7 +31,6 @@
                 </div>
             </a>
 
-            <!-- 2. NAVEGACIÓN CON ID "mobileNav" Y BOTÓN DE CERRAR ("X") -->
             <nav class="header-nav" id="mobileNav">
                 <button class="close-menu" onclick="toggleMenu()">&times;</button>
 
@@ -43,12 +40,10 @@
                 <a href="eventos.html" class="nav-link">Eventos</a>
             </nav>
 
-            <!-- BUSCADOR -->
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="¿Qué suplemento buscas?">
             </div>
 
-            <!-- CARRITO -->
             <div class="header-actions">
                 <div class="cart-trigger" onclick="toggleCart()">
                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
@@ -65,13 +60,11 @@
     </header>
 
     <main class="planes-container">
-        <!-- SECCIÓN DEL CARRUSEL DINÁMICO -->
         <section class="reels-section">
             <h2 class="section-title">Descubre nuestros planes en acción</h2>
             <div class="carousel-wrapper">
 
                 <div class="carousel-track-outer">
-                    <!-- Flechas adentro para que se centren con la altura del video -->
                     <button class="arrow arrow-prev" id="prevBtn" aria-label="Anterior">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                             <polyline points="15 18 9 12 15 6" />
@@ -87,21 +80,18 @@
                     </button>
                 </div>
 
-                <!-- CONTENEDOR DE LA TARJETA DINÁMICA -->
                 <div class="product-card-container" id="productCardContainer"> </div>
             </div>
         </section>
 
-        <!-- SECCIÓN DE TESTIMONIOS -->
-        <!-- SECCIÓN DE TESTIMONIOS (DISEÑO HORIZONTAL) -->
         <section class="testimonials-section">
             <h2 class="section-title">Lo que dicen <span>nuestras alumnas</span></h2>
 
             <div class="testimonials-list">
-                <!-- Testimonio 1 -->
+
                 <article class="testimonial-horizontal-card">
                     <div class="testimonial-image">
-                        <!-- Cambia el src por la foto real de tu alumna -->
+
                         <img src="img/alumna3.webp" alt="María"
                             onerror="this.src='https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80'">
                     </div>
@@ -129,7 +119,6 @@
                     </div>
                 </article>
 
-                <!-- Testimonio 2 -->
                 <article class="testimonial-horizontal-card">
                     <div class="testimonial-image">
                         <img src="img/alumna2.webp" alt="Lucía"
@@ -160,7 +149,6 @@
                     </div>
                 </article>
 
-                <!-- Testimonio 3 -->
                 <article class="testimonial-horizontal-card">
                     <div class="testimonial-image">
                         <img src="img/alumna1.webp" alt="Andrea"
@@ -197,7 +185,6 @@
         </div>
     </main>
 
-    <!-- Asegúrate de tener tu carrito.js enlazado aquí -->
     <script src="js/carrito.js"></script>
     <script src="js/planes.js"></script>
 
@@ -245,7 +232,7 @@
                 </div>
                 <div class="contact-item">
                     <h4>ESCRÍBENOS</h4>
-                    <p>claudia.trainer.pe@gmail.com</p>
+                    <p>informes@claudiatrainer.com</p>
                 </div>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/claudia.trainer.peru" class="icon-fb">f</a>
