@@ -3,7 +3,7 @@
         id: 101,
         name: "Plan 2 veces por semana",
         subtitle: "Constancia y adaptación para recuperar tu fuerza.",
-        videoSrc: "vid/video1.webm",
+        videoSrc: "vid/video1(1).webm",
         features: [
             "8 clases mensuales",
             "Entrenamiento personalizado",
@@ -14,7 +14,7 @@
         id: 102,
         name: "Plan 3 veces por semana",
         subtitle: "El equilibrio perfecto para crear un hábito real.",
-        videoSrc: "vid/video3.webm",
+        videoSrc: "vid/video3(1).webm",
         features: [
             "12 clases mensuales",
             "Entrenamiento personalizado",
@@ -25,7 +25,7 @@
         id: 103,
         name: "Evaluación + Rutina Personalizada",
         subtitle: "Ideal para entrenar por tu cuenta con una guía segura.",
-        videoSrc: "vid/video2.webm",
+        videoSrc: "vid/video2(1).webm",
         features: [
             "Evaluación física completa",
             "Diseño de rutina personalizada",
@@ -59,6 +59,7 @@ function buildSlides() {
             video.src = p.videoSrc;
             video.loop = true;
             video.muted = isMuted;
+            video.volume = 0.2;
             video.playsInline = true;
             video.preload = 'auto';
             video.setAttribute('playsinline', '');
